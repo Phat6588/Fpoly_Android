@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="213dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:background="@color/design_default_color_error"
+        android:text="TextView"
+
+        android:layout_toRightOf="@+id/textView8"
+        android:layout_alignBottom="@+id/textView8"
+
+        />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="68dp"
+        android:layout_height="294dp"
+        android:layout_above="@id/textView6"
+        android:layout_alignRight="@id/textView6"
+
+        android:layout_marginBottom="5dp"
+        android:background="@color/cardview_dark_background"
+
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="157dp"
+        android:layout_height="112dp"
+        android:background="@color/design_default_color_primary"
+        android:text="TextView"
+
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+
+        />
+</RelativeLayout>
