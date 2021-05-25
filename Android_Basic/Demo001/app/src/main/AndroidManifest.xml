@@ -9,16 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo001">
-        <activity android:name=".DemoLinearLayoutActivity"></activity>
-        <activity android:name=".DemoRelativeLayoutActivity">
+        <activity android:name=".DemoListViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DemoImage">
+
+        </activity>
+        <activity android:name=".DemoLinearLayoutActivity"></activity>
+        <activity android:name=".DemoRelativeLayoutActivity" />
         <activity android:name=".SecondScreenActivity" />
-        <activity android:name=".FirstScreenActivity"></activity>
+        <activity android:name=".FirstScreenActivity" />
         <activity android:name=".BeLamToanActivity" />
         <activity android:name=".StudentActivity" />
         <activity android:name=".SecondActivity" />
