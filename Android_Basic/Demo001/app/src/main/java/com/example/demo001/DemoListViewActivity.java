@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import helper.CustomListSinhVienAdapter;
+import adapter.CustomListSinhVienAdapter;
 import model.SinhVien;
 
 public class DemoListViewActivity extends AppCompatActivity {
