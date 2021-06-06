@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo001">
         <activity android:name=".DemoNhanVienActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".DemoIntentActivity"></activity>
+        <activity android:name=".DemoIntentActivity"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
         <activity android:name=".DemoListViewActivity">
 
         </activity>

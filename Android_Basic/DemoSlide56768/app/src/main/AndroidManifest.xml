@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoSlide56768">
-        <activity android:name=".LaptopDetailActivity"></activity>
+        <activity android:name=".AddNewLaptopActivity"></activity>
+        <activity android:name=".LaptopDetailActivity" />
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -20,4 +21,11 @@
         </activity>
     </application>
 
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
 </manifest>

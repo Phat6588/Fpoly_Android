@@ -1,6 +1,7 @@
 package com.example.demoslide56768.Adapter;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -46,11 +47,19 @@ public class LaptopAdapter extends BaseAdapter {
 
         TextView id = (TextView) view.findViewById(R.id.textViewLaptopId);
         TextView name = (TextView) view.findViewById(R.id.textViewLaptopName);
+        ImageView image = (ImageView) view.findViewById(R.id.imageViewLaptop);
 
         Laptop nv = (Laptop) getItem(_i);
 
         id.setText(nv.getLaptopId());
         name.setText(nv.getLaptopName());
+        byte[] imageArray = nv.getLaptopImage();
+        if(imageArray == null){
+            image.setImageResource(R.drawable.ic_launcher_background);
+        }
+        else {
+            image.setImageBitmap(BitmapFactory.decodeByteArray(imageArray, 0, imageArray.length));
+        }
 
         return view;
     }
