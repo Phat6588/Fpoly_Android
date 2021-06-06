@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/bg_nensearch"
+        android:elevation="3dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_weight="0"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imgAvatarSV"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/avatar_loi"
+            app:civ_border_width="0dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTenSV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Đặng Hoàng Huy"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtMaSV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="PS14760"
+                android:textColor="#FF9800"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtLopSV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Lớp: LT16201_3"
+                android:textColor="#999999"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="5dp"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/bg_tronluc_vienmong"
+                android:id="@+id/imgCapNhatSV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_qlkhoahoc_capnhat" />
+
+            <ImageButton
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/bg_trondo_vienmong"
+                android:id="@+id/imgXoaSV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_qlkhoahoc_x" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

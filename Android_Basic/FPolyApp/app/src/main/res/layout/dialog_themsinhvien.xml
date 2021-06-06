@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_nensearch"
+    tools:context=".Fragment.TrangDangNhap.DangKyFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_toolbarcam2"
+        app:contentInsetEnd="15dp"
+        app:contentInsetStart="15dp"
+        android:id="@+id/toolBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center|left"
+                android:id="@+id/txtTieuDeThemSV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Thêm sinh viên" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imgThoatThemSV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/ic_qlkhoahoc_x" />
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:textSize="18sp"
+            android:drawableLeft="@drawable/ic_qlkhoahoc_ma"
+            android:drawablePadding="20dp"
+            android:layout_margin="10dp"
+            android:elevation="3dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="15dp"
+            android:background="@drawable/bg_nentext"
+            android:id="@+id/edtMaSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Mã sinh viên"/>
+
+        <EditText
+            android:id="@+id/edtAvatarSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_nentext"
+            android:drawableLeft="@drawable/ic_qlkhoahoc_anh"
+            android:drawablePadding="20dp"
+            android:elevation="3dp"
+            android:ems="10"
+            android:hint="Ảnh đại diện"
+            android:inputType="text"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:textSize="18sp" />
+
+        <EditText
+            android:textSize="18sp"
+            android:drawableLeft="@drawable/ic_sinhvien_avatar"
+            android:drawablePadding="20dp"
+            android:layout_margin="10dp"
+            android:elevation="3dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="15dp"
+            android:background="@drawable/bg_nentext"
+            android:id="@+id/edtTenSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Tên sinh viên"/>
+
+        <Spinner
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:elevation="3dp"
+            android:background="@drawable/bg_nentext"
+            android:id="@+id/spnMaLop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Mã lớp học"/>
+
+        <Button
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_buttoncam"
+            android:id="@+id/btnThemMoiSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm mới" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/bg_nensearch"
+        android:elevation="3dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTieuDeTK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Tài khoản:"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtTieuDeMK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Mật khẩu:"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtTieuDeMa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Mã số SV:"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTenTK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="admin@123"
+                android:textColor="#999999"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtNDMatKhau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="admin"
+                android:textColor="#999999"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtMSSVMK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="PS14760"
+                android:textColor="#FF9800"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="5dp"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/bg_tronluc_vienmong"
+                android:id="@+id/imgCapNhatTK"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_qlkhoahoc_capnhat" />
+
+            <ImageButton
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/bg_trondo_vienmong"
+                android:id="@+id/imgXoaTK"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_qlkhoahoc_x" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

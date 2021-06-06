@@ -21,8 +21,7 @@ public class CustomListNhanVienAdapter extends BaseAdapter {
     private List<NhanVien> data;
     private Context context;
 
-    public CustomListNhanVienAdapter(Context _context,
-                                     List<NhanVien> _data){
+    public CustomListNhanVienAdapter(Context _context,List<NhanVien> _data){
         context = _context;
         data = _data;
     }
@@ -46,21 +45,24 @@ public class CustomListNhanVienAdapter extends BaseAdapter {
     public View getView(int _i, View _view, ViewGroup _viewGroup) {
         View view = _view;
         if (_view == null){
-            view = View.inflate(_viewGroup.getContext(), R.layout.layout_nhan_vien, null);
+            view = View.inflate(_viewGroup.getContext(),
+                    R.layout.layout_nhan_vien, null);
         }
 
+        TextView maNV = (TextView) view.findViewById(R.id.textViewMaNhanVien);
+        TextView hoTenNV = (TextView) view.findViewById(R.id.textViewHoTen);
+        ImageView hinhAnh = (ImageView) view.findViewById(R.id.imageViewHinhAnh);
+
         NhanVien nv = (NhanVien) getItem(_i);
-        ((TextView) view.findViewById(R.id.textViewMaNhanVien))
-                .setText(nv.getMaNhanVien());
-        ((TextView) view.findViewById(R.id.textViewHoTen))
-                .setText(nv.getHoTen());
 
-        String pkg = context.getPackageName();
         int imgId = context.getResources()
-                .getIdentifier(nv.getHinhAnh(), "drawable", pkg);
+                .getIdentifier(nv.getHinhAnh(),
+                        "drawable",
+                        context.getPackageName());
 
-        ((ImageView) view.findViewById(R.id.imageViewHinhAnh))
-                .setImageResource(imgId);
+        maNV.setText(nv.getMaNhanVien());
+        hoTenNV.setText(nv.getHoTen());
+        hinhAnh.setImageResource(imgId);
 
         return view;
     }

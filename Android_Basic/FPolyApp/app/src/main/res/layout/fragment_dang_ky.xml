@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#F8F8F8"
+    tools:context=".Fragment.TrangDangNhap.DangKyFragment">
+
+    <LinearLayout
+        android:paddingHorizontal="20dp"
+        android:paddingTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:textSize="18sp"
+            android:drawableLeft="@drawable/ic_dk_mssv"
+            android:drawablePadding="20dp"
+            android:layout_margin="10dp"
+            android:elevation="3dp"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/bg_nentext"
+            android:id="@+id/edtMSSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Mã số sinh viên"/>
+
+        <EditText
+            android:id="@+id/edtEmail2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_nentext"
+            android:drawableLeft="@drawable/ic_dn_mail"
+            android:drawablePadding="20dp"
+            android:elevation="3dp"
+            android:ems="10"
+            android:hint="Tài khoản"
+            android:inputType="text"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:textSize="18sp" />
+
+        <EditText
+            android:textSize="18sp"
+            android:drawableLeft="@drawable/ic_dn_key"
+            android:drawablePadding="20dp"
+            android:layout_margin="10dp"
+            android:elevation="3dp"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/bg_nentext"
+            android:id="@+id/edtPass2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Mật khẩu"/>
+
+        <Button
+            android:paddingVertical="15dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="57dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_buttoncam"
+            android:id="@+id/btnDangKy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="15dp"
+    android:background="@color/white"
+    android:paddingVertical="15dp">
+
+    <ImageView
+        android:id="@+id/imgAvatarChat"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/load_avatar" />
+
+    <TextView
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        android:gravity="left|center"
+        android:id="@+id/txtTenChat"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:text="Đặng Hoàng Huy" />
+
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:id="@+id/imgChat"
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/ic_nhantin_chat" />
+
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:id="@+id/imgPhone"
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/ic_nhantin_phone" />
+
+</LinearLayout>

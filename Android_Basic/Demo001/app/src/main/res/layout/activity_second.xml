@@ -7,40 +7,42 @@
     tools:context=".SecondActivity">
 
     <TextView
-        android:id="@+id/txtFromMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:id="@+id/txtViewSecondMaNV"
+        android:layout_width="266dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="100dp"
         android:text="TextView"
         android:textColor="@color/purple_500"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/inputSecond"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Nội dung gửi đi"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="@color/purple_700"
+    <TextView
+        android:id="@+id/txtViewSecondTenNV"
+        android:layout_width="266dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:text="TextView"
+        android:textColor="@color/purple_500"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFromMain" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewSecondMaNV" />
 
-    <Button
-        android:id="@+id/btnSecond"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Send to Main"
+    <ImageView
+        android:id="@+id/imageViewSecondHinhAnh"
+        android:layout_width="194dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputSecond" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewSecondTenNV"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

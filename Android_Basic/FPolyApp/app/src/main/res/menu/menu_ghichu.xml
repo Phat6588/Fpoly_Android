@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/ghichu"
+        android:title="Ghi chú"
+        android:icon="@drawable/ic_ghichu_ghichu" />
+    <item android:id="@+id/vieccanlam"
+        android:title="Việc cần làm"
+        android:icon="@drawable/ic_ghichu_vieccanlam"/>
+</menu>

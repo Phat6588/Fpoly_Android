@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/trangchu"
+        android:title="Trang chủ"
+        android:icon="@drawable/ic_main_trangchu" />
+    <item android:id="@+id/thongbao"
+        android:title="Thông báo"
+        android:icon="@drawable/ic_main_thongbao"/>
+    <item android:id="@+id/hoctap"
+        android:title="Học tập"
+        android:icon="@drawable/ic_main_hoctap"/>
+    <item android:id="@+id/nhantin"
+        android:title="Nhắn tin"
+        android:icon="@drawable/ic_main_tinnhan"/>
+    <item android:id="@+id/taikhoan"
+        android:title="Tài khoản"
+        android:icon="@drawable/ic_main_taikhoan"/>
+</menu>

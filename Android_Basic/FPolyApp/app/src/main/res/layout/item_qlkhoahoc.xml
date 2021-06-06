@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/bg_nensearch"
+        android:elevation="3dp"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgAnhQLKH"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/load_kh1" />
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtMaQLKH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="BUS1024"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtTenQLKH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Kinh tế"
+                android:textColor="#FF9800"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/txtNgayBatDauQLKH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Bắt đầu: 20/12/2020"
+                android:textColor="#999999"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="5dp"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_tronluc_vienmong"
+                android:id="@+id/imgCapNhatQLKH"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_qlkhoahoc_capnhat" />
+
+            <ImageButton
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/bg_trondo_vienmong"
+                android:id="@+id/imgXoaQLKH"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_qlkhoahoc_x" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

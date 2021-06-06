@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/bg_nensearch"
+        android:elevation="3dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginVertical="3dp"
+                android:id="@+id/txtTieuDeGC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Nhân viên đi trễ"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_marginVertical="3dp"
+                android:id="@+id/txtNoiDungGC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:text="Nguyễn Đình Duy"
+                android:textColor="#999999"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="5dp"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/bg_tronluc_vienmong"
+                android:id="@+id/imgSuaGC"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_qlkhoahoc_capnhat" />
+
+            <ImageButton
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/bg_trondo_vienmong"
+                android:id="@+id/imgXoaGC"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_qlkhoahoc_x" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

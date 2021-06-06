@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F8F8"
+    tools:context=".Activity.TrangDangNhap">
+
+    <LinearLayout
+        android:background="@drawable/bg_nenlogo"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:id="@+id/imgLogoTC"
+            android:layout_width="220dp"
+            android:layout_height="110dp"
+            app:srcCompat="@drawable/load_flogo" />
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:paddingRight="30dp"
+            android:gravity="center|right"
+            android:id="@+id/txtTieuDe"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Đăng nhập" />
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpKhungNhap"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_marginRight="3dp"
+            android:gravity="right"
+            android:id="@+id/txtCauHoi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bạn đã có tài khoản?" />
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="#FF9800"
+            android:textStyle="bold"
+            android:layout_marginLeft="3dp"
+            android:id="@+id/txtDangKy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đăng ký" />
+    </LinearLayout>
+
+</LinearLayout>

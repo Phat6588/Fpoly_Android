@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="180dp"
+    android:padding="5dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/bg_nensearch"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgAnhKH"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/load_kh1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/txtMaKH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="ENT2125"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/txtTenKH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tiếng Anh 2.1"
+                android:textColor="#F18A00"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtNgayBatDau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bắt đầu: 10/01/2021"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

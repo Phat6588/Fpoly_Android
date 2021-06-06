@@ -8,35 +8,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private TextView txtFromMain;
-    private EditText inputSecond;
-    private Button btnSecond;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        txtFromMain = (TextView) findViewById(R.id.txtFromMain);
-        inputSecond = (EditText) findViewById(R.id.inputSecond);
-        btnSecond = (Button) findViewById(R.id.btnSecond);
+
+        TextView txtViewMaNV = (TextView) findViewById(R.id.txtViewSecondMaNV) ;
+        TextView txtViewTenNV = (TextView) findViewById(R.id.txtViewSecondTenNV) ;
+        ImageView imageView = (ImageView) findViewById(R.id.imageViewSecondHinhAnh) ;
 
         Intent intent = getIntent();
-        String text = intent.getStringExtra("chatMsg");
-        txtFromMain.setText(text);
+        String maNV = intent.getStringExtra("maNV");
+        String hoTen = intent.getStringExtra("hoTen");
+        String hinhAnh = intent.getStringExtra("hinhAnh");
 
-        btnSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String text = inputSecond.getText().toString();
-                Intent intent1 = new Intent();
-                intent1.putExtra("chatMsg", text);
-                setResult(Activity.RESULT_OK, intent1);
-                finish();
-            }
-        });
+        txtViewMaNV.setText(maNV);
+        txtViewTenNV.setText(hoTen);
+
+        int imgId = getResources().getIdentifier(hinhAnh,"drawable",getPackageName());
+        imageView.setImageResource(imgId);
+
 
     }
 }
