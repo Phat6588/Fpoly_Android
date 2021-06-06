@@ -5,24 +5,14 @@ public class Laptop {
     private String laptopName;
     private Double laptopPrice;
     private String brandId;
-    private byte[] laptopImage;
-
-    public byte[] getLaptopImage() {
-        return laptopImage;
-    }
-
-    public void setLaptopImage(byte[] laptopImage) {
-        this.laptopImage = laptopImage;
-    }
 
     public Laptop() {
     }
 
-    public Laptop(String laptopId, String laptopName, Double laptopPrice, byte[] image, String brandId) {
+    public Laptop(String laptopId, String laptopName, Double laptopPrice, String brandId) {
         this.laptopId = laptopId;
         this.laptopName = laptopName;
         this.laptopPrice = laptopPrice;
-        this.laptopImage = image;
         this.brandId = brandId;
     }
 

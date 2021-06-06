@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class MyDatabase extends SQLiteOpenHelper {
 
     public MyDatabase(@Nullable Context context) {
-        super(context, "LaptopDB", null, 3);
+        super(context, "LaptopDB", null, 2);
     }
 
     @Override
@@ -24,7 +24,6 @@ public class MyDatabase extends SQLiteOpenHelper {
         sql = "CREATE TABLE LAPTOP (LaptopId Text primary key not null, " +
                 "LaptopName Text, " +
                 "LaptopPrice Real, " +
-                "LaptopImage Blob, " +
                 "BrandId Text not null, " +
                 "foreign key (BrandId) references BRAND(BrandId))";
         sqLiteDatabase.execSQL(sql);
@@ -43,10 +42,10 @@ public class MyDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("INSERT INTO BRAND VALUES('0003', 'Lenovo')");
         sqLiteDatabase.execSQL("INSERT INTO BRAND VALUES('0004', 'ASUS')");
 
-        sqLiteDatabase.execSQL("INSERT INTO LAPTOP(LaptopId, LaptopName,LaptopPrice,BrandId) VALUES('0001', 'Dell001', 2000, '0001')");
-        sqLiteDatabase.execSQL("INSERT INTO LAPTOP(LaptopId, LaptopName,LaptopPrice,BrandId) VALUES('0002', 'Dell001', 3000, '0001')");
-        sqLiteDatabase.execSQL("INSERT INTO LAPTOP(LaptopId, LaptopName,LaptopPrice,BrandId) VALUES('0003', 'Dell001', 2500, '0001')");
-        sqLiteDatabase.execSQL("INSERT INTO LAPTOP(LaptopId, LaptopName,LaptopPrice,BrandId) VALUES('0004', 'Lenovo001', 1500, '0003')");
+        sqLiteDatabase.execSQL("INSERT INTO LAPTOP VALUES('0001', 'Dell001', 2000, '0001')");
+        sqLiteDatabase.execSQL("INSERT INTO LAPTOP VALUES('0002', 'Dell001', 3000, '0001')");
+        sqLiteDatabase.execSQL("INSERT INTO LAPTOP VALUES('0003', 'Dell001', 2500, '0001')");
+        sqLiteDatabase.execSQL("INSERT INTO LAPTOP VALUES('0004', 'Lenovo001', 1500, '0003')");
     }
 
     @Override

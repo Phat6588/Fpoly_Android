@@ -1,6 +1,5 @@
 package com.example.demoslide56768.DAO;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,9 +28,8 @@ public class LaptopDAO implements ILaptopDAO {
             String laptopId = cursor.getString(0);
             String laptopName = cursor.getString(1);
             Double laptopPrice = cursor.getDouble(2);
-            byte[] laptopImage = cursor.getBlob(3);
-            String brandId = cursor.getString(4);
-            Laptop laptop = new Laptop(laptopId, laptopName, laptopPrice, laptopImage, brandId);
+            String brandId = cursor.getString(3);
+            Laptop laptop = new Laptop(laptopId, laptopName, laptopPrice, brandId);
             list.add(laptop);
             cursor.moveToNext();
         }
@@ -51,9 +49,8 @@ public class LaptopDAO implements ILaptopDAO {
             String id = cursor.getString(0);
             String name = cursor.getString(1);
             Double price = cursor.getDouble(2);
-            byte[] laptopImage = cursor.getBlob(3);
-            String brandId = cursor.getString(4);
-            laptop = new Laptop(id, name, price, laptopImage, brandId);
+            String brandId = cursor.getString(3);
+            laptop = new Laptop(id, name, price, brandId);
             cursor.moveToNext();
         }
         cursor.close();
@@ -62,14 +59,7 @@ public class LaptopDAO implements ILaptopDAO {
 
     @Override
     public void insert(Laptop laptop) {
-        SQLiteDatabase database = myDatabase.getReadableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("LaptopId", laptop.getLaptopId());
-        values.put("LaptopName", laptop.getLaptopName());
-        values.put("LaptopPrice", laptop.getLaptopPrice());
-        values.put("LaptopImage", laptop.getLaptopImage());
-        values.put("BrandId", laptop.getBrandId());
-        database.insert("LAPTOP",null, values);
+
     }
 
     @Override
