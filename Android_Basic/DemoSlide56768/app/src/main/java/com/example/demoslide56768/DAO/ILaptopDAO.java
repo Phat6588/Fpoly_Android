@@ -11,4 +11,6 @@ public interface ILaptopDAO {
     void insert(Laptop laptop);
     void update(Laptop laptop);
     void delete(String laptopId);
+
+    // dependency injection
 }
