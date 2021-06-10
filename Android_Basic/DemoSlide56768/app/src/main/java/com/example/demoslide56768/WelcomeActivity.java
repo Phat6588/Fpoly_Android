@@ -35,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 Laptop laptop = (Laptop) adapter.getItem(i);
                 Intent intent = new Intent(WelcomeActivity.this, LaptopDetailActivity.class);
                 intent.putExtra("id", laptop.getLaptopId());
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 

@@ -44,18 +44,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLaptopName" />
 
-    <EditText
-        android:id="@+id/editTextBrandId"
-        android:layout_width="330dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="38dp"
-        android:ems="10"
-        android:hint="brand id"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLaptopPrice" />
-
     <ImageView
         android:id="@+id/imageViewLaptop2"
         android:layout_width="215dp"
@@ -80,10 +68,21 @@
         android:id="@+id/buttonChupAnh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="33dp"
         android:text="Chụp ảnh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBrandId" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBrandId" />
+
+    <Spinner
+        android:id="@+id/spinnerBrandId"
+        android:layout_width="329dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLaptopPrice" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
