@@ -1,5 +1,6 @@
 package com.example.demoslide56768.DAO;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,7 +30,9 @@ public class LaptopDAO implements ILaptopDAO {
             String laptopName = cursor.getString(1);
             Double laptopPrice = cursor.getDouble(2);
             String brandId = cursor.getString(3);
-            Laptop laptop = new Laptop(laptopId, laptopName, laptopPrice, brandId);
+            byte[] laptopImage = cursor.getBlob(4);
+            Laptop laptop = new Laptop(laptopId, laptopName, laptopPrice,
+                    brandId, laptopImage);
             list.add(laptop);
             cursor.moveToNext();
         }
@@ -50,7 +53,8 @@ public class LaptopDAO implements ILaptopDAO {
             String name = cursor.getString(1);
             Double price = cursor.getDouble(2);
             String brandId = cursor.getString(3);
-            laptop = new Laptop(id, name, price, brandId);
+            byte[] image = cursor.getBlob(4);
+            laptop = new Laptop(id, name, price, brandId, image);
             cursor.moveToNext();
         }
         cursor.close();
@@ -59,16 +63,32 @@ public class LaptopDAO implements ILaptopDAO {
 
     @Override
     public void insert(Laptop laptop) {
-
+        SQLiteDatabase database = myDatabase.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("LaptopId", laptop.getLaptopId());
+        values.put("LaptopName", laptop.getLaptopName());
+        values.put("LaptopPrice", laptop.getLaptopPrice());
+        values.put("BrandId", laptop.getBrandId());
+        values.put("LaptopImage", laptop.getLaptopImage());
+        database.insert("LAPTOP", null, values);
     }
 
     @Override
     public void update(Laptop laptop) {
-
+        SQLiteDatabase database = myDatabase.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        String[] params = new String[]{laptop.getLaptopId()};
+        values.put("LaptopName", laptop.getLaptopName());
+        values.put("LaptopPrice", laptop.getLaptopPrice());
+        values.put("BrandId", laptop.getBrandId());
+        values.put("LaptopImage", laptop.getLaptopImage());
+        database.update("LAPTOP", values, "LaptopId = ?", params);
     }
 
     @Override
     public void delete(String laptopId) {
-
+        SQLiteDatabase database = myDatabase.getReadableDatabase();
+        String[] params = new String[]{laptopId};
+        database.delete("LAPTOP", "LaptopId = ?", params);
     }
 }
