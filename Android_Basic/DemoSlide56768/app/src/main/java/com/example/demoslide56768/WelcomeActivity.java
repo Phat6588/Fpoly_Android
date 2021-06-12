@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -45,6 +46,24 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(WelcomeActivity.this, AddNewActivity.class);
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        Button buttonLogout = (Button) findViewById(R.id.buttonLogout);
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // luu trang thai logout
+                SharedPreferences.Editor editor =
+                        getSharedPreferences("login_status",MODE_PRIVATE).edit();
+                editor.putBoolean("isLoggedIn", false);
+                editor.apply();
+
+                // chuyen ve man hinh login
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+                return;
             }
         });
     }

@@ -3,6 +3,7 @@ package com.example.demoslide56768;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // kiem tra login, neu da dang nhap >>> chay qua man hinh welcome
+        // nguoc lai cho dang nhap
+        checkLoginStatus();
+
         EditText editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         Button buttonDangNhap = (Button) findViewById(R.id.buttonDangNhap);
@@ -35,8 +40,17 @@ public class MainActivity extends AppCompatActivity {
                 Boolean check = (new UserDAO(MainActivity.this))
                                 .login(username, password);
                 if (check == true){
+                    // luu trang thai dang nhap
+                    SharedPreferences.Editor editor =
+                            getSharedPreferences("login_status",MODE_PRIVATE).edit();
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.apply();
+
+                    // chuyen man hinh
                     Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
                     startActivity(intent);
+                    finish();
+                    return;
                 }
                 else {
                     Toast.makeText(MainActivity.this,
@@ -44,5 +58,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void checkLoginStatus(){
+        SharedPreferences editor =
+                getSharedPreferences("login_status",MODE_PRIVATE);
+        boolean isLoggedIn = editor.getBoolean("isLoggedIn",false);
+        if (isLoggedIn == true){
+            startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+            finish();
+            return;
+        }
     }
 }

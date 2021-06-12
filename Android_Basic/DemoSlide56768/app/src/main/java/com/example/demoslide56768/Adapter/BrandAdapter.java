@@ -34,6 +34,18 @@ public class BrandAdapter extends BaseAdapter {
         return data.get(i);
     }
 
+    public int getPositon(String brandId){
+        int index = -1;
+        for (int i = 0; i < data.size(); i++) {
+            Brand brand = data.get(i);
+            if (brand.getBrandId().equals(brandId)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
     @Override
     public long getItemId(int i) {
         return i;

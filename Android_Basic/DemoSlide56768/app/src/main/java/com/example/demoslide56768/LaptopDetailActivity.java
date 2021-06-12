@@ -74,7 +74,7 @@ public class LaptopDetailActivity extends AppCompatActivity {
             }
         });
 
-        spinnerBrandId.setSelection(0);
+        spinnerBrandId.setSelection(adapter.getPositon(laptop.getBrandId()));
 
         Button buttonXoa = (Button) findViewById(R.id.buttonXoa);
         buttonXoa.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +97,7 @@ public class LaptopDetailActivity extends AppCompatActivity {
                 LaptopDAO dao = new LaptopDAO(LaptopDetailActivity.this);
                 laptop.setLaptopName(_name);
                 laptop.setLaptopPrice(_price);
+                laptop.setBrandId(selectedBrandId);
                 dao.update(laptop);
 
                 setResult(Activity.RESULT_OK);
