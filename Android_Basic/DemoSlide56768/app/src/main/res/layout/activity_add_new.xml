@@ -73,10 +73,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerBrandId" />
+        app:layout_constraintTop_toBottomOf="@+id/dialog_spinner" />
 
     <Spinner
-        android:id="@+id/spinnerBrandId"
+        android:id="@+id/dialog_spinner"
         android:layout_width="329dp"
         android:layout_height="46dp"
         android:layout_marginTop="40dp"

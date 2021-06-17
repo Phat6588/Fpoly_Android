@@ -3,6 +3,8 @@ package com.example.demoslide56768;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -26,7 +28,7 @@ public class LaptopDetailActivity extends AppCompatActivity {
 
     Spinner spinnerBrandId;
     String selectedBrandId = null;
-
+    Laptop laptop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class LaptopDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
 
-        Laptop laptop = (new LaptopDAO(this)).get(id);
+        laptop = (new LaptopDAO(this)).get(id);
 
         TextView textViewId = (TextView) findViewById(R.id.textViewId);
         EditText editTextName = (EditText) findViewById(R.id.editTextName);
@@ -80,10 +82,7 @@ public class LaptopDetailActivity extends AppCompatActivity {
         buttonXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LaptopDAO dao = new LaptopDAO(LaptopDetailActivity.this);
-                dao.delete(laptop.getLaptopId());
-                setResult(Activity.RESULT_OK);
-                finish();
+                showConfirmDialog();
             }
         });
 
@@ -104,5 +103,29 @@ public class LaptopDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void showConfirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cảnh báo");
+        builder.setMessage("Bạn có chắc muốn xóa??");
+        builder.setCancelable(true);
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                LaptopDAO dao = new LaptopDAO(LaptopDetailActivity.this);
+                dao.delete(laptop.getLaptopId());
+                setResult(Activity.RESULT_OK);
+                finish();
+            }
+        });
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

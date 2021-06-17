@@ -1,22 +1,21 @@
 package com.example.demoslide56768;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.demoslide56768.Adapter.BrandAdapter;
 import com.example.demoslide56768.DAO.BrandDAO;
@@ -37,6 +36,8 @@ public class AddNewActivity extends AppCompatActivity {
 
     Spinner spinnerBrandId;
     String selectedBrandId = null;
+
+//    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class AddNewActivity extends AppCompatActivity {
 
         List<Brand> brands = (new BrandDAO(this)).get();
         BrandAdapter adapter = new BrandAdapter(this, brands);
-        spinnerBrandId = (Spinner) findViewById(R.id.spinnerBrandId);
+        spinnerBrandId = (Spinner) findViewById(R.id.dialog_spinner);
         spinnerBrandId.setAdapter(adapter);
 
         spinnerBrandId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -84,16 +85,14 @@ public class AddNewActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String _id = id.getText().toString();
-                String _name = name.getText().toString();
-                Double _price = Double.parseDouble(price.getText().toString());
-                String _brand = selectedBrandId;
-                byte[] _img = bitmapToByteArray(bitmapImg);
-                Laptop laptop = new Laptop(_id, _name, _price, _brand, _img);
-                LaptopDAO dao = new LaptopDAO(AddNewActivity.this);
-                dao.insert(laptop);
-                setResult(Activity.RESULT_OK);
-                finish();
+                // validation
+                Laptop laptop = readFormData();
+                if(laptop != null){
+                    LaptopDAO dao = new LaptopDAO(AddNewActivity.this);
+                    dao.insert(laptop);
+                    setResult(Activity.RESULT_OK);
+                    finish();
+                }
             }
         });
     }
@@ -125,5 +124,52 @@ public class AddNewActivity extends AppCompatActivity {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
         return outputStream.toByteArray();
+    }
+
+    private Laptop readFormData(){
+        String _id = id.getText().toString();
+        String _name = name.getText().toString();
+        String _price = price.getText().toString();
+        String _brand = selectedBrandId;
+        byte[] _img = bitmapToByteArray(bitmapImg);
+
+        // id = Laptop1234,
+        String patternId = "Laptop\\d{4}";
+        String patternName = "[a-zA-Z0-9]{3,}";
+        String patternPrice = "\\d{3,}";
+        String patternDate = "0[1-9]|[1-2][0-9]|3[0-1]-0[1-9]|1[0-2]-\\d{4}";
+
+        boolean checkId = _id.matches(patternId);
+        boolean checkName = _name.matches(patternName);
+        boolean checkPrice = _price.matches(patternPrice);
+        if(!checkId || !checkName || !checkPrice){
+            showDialog();
+            return null;
+        }
+        Double price = Double.parseDouble(_price);
+        Laptop laptop = new Laptop(_id, _name, price, _brand, _img);
+        return laptop;
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cảnh báo");
+        builder.setMessage("Du lieu khong chinh xac");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Hieu roi", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.setNegativeButton("Dong y", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+//        builder.setView()
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
