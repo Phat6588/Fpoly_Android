@@ -1,0 +1,82 @@
+Android Basic
+	
+	giới thiệu bảng điểm
+	giới thiệu assignment
+	giới thiệu syllabus
+	cài môi trường JAVA_HOME, ANDROID_HOME
+	cài đặt android studio
+	
+	quy tắc đặt tên project nộp bài, dat tien tieng viet
+	link quan trọng:
+		https://openplanning.net/11007/android
+============================
+Bài 2:
+	Giới thiệu Activity, vòng đời
+	Tạo nhiều Activity, chuyển màn hình, truyền dữ liệu qua lại
+	Set màn hình chính khi chạy
+================================
+bài 3:
+	Layout
+	https://xuanthulab.net/su-dung-linearlayout-trong-android.html
+	https://xuanthulab.net/su-dung-relativelayout-trong-android.html
+	ListView
+https://xuanthulab.net/su-dung-listview-hien-thi-du-lieu-dang-danh-sach-trong-android.html
+ImageView
+https://xuanthulab.net/imageview-va-imagebutton-trong-android.html
+================================================
+
+Bài 4: 
+	Intent
+	bài này quan trọng, cần phải xem intent cho kỹ
+https://developer.android.com/guide/components/intents-common
+https://developer.android.com/training/camera/photobasics
+
+================================
+
+
+Keep login status
+https://stackoverflow.com/questions/58360615/keep-user-logged-in-and-logout-successfully-in-android-app-sqlite-database
+
+Chay tren may thuc
+https://duythanhcse.wordpress.com/2020/04/08/bai-6-cach-chay-mot-du-an-android-tren-dien-thoai-that/
+
+Dialog
+https://www.dotplays.com/android-co-ban-dialog-trong-android-p1/
+https://thangcoder.com/lap-trinh-android/hoc-lap-trinh-android-can-ban/dialog-va-alertdialog-trong-lap-trinh-android
+
+
+SQLite version
+https://umeshsaravane.wordpress.com/2015/12/29/new-blog/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
