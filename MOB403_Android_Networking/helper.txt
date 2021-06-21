@@ -1,0 +1,9 @@
+
+Fix xampp not start apache
+
+https://www.webucator.com/blog/2016/05/fixing-a-blocked-port-in-xampp/
+https://www.devopsschool.com/blog/how-to-fix-an-error-of-phpmyadmin-access-denied-in-xamp-mysql/
+
+
+crud
+https://www.positronx.io/create-simple-php-crud-rest-api-with-mysql-php-pdo/
