@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/21501316/what-is-the-benefit-of-viewholder-pattern-in-android
