@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:gravity="center">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        app:cardCornerRadius="40dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_person_24"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:cardCornerRadius="15dp"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignBottom="@id/imageView"
+        android:backgroundTint="@color/myColor"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_edit_24"
+            />
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:textSize="36sp"
+        android:id="@+id/labelLogin"
+        android:layout_marginBottom="16dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/imageView"
+        />
+    <View
+        android:layout_width="150dp"
+        android:layout_height="8dp"
+        android:background="@color/myColor"
+        android:layout_below="@id/labelLogin"
+        android:id="@+id/viewHorizontal"
+        android:layout_marginBottom="32dp"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Username"
+        android:textSize="24sp"
+        android:id="@+id/labelUsername"
+        android:layout_below="@+id/viewHorizontal"
+        android:layout_marginBottom="24dp"
+        
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/labelUsername"
+        android:id="@+id/editTextUsername"
+        android:layout_marginBottom="32dp"
+        android:drawableRight="@drawable/ic_baseline_person_24"
+        android:drawablePadding="8dp"
+        android:background="@drawable/custom_edit_text"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Password"
+        android:textSize="24sp"
+        android:id="@+id/labelPassword"
+        android:layout_below="@+id/editTextUsername"
+        android:layout_marginBottom="24dp"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPasswordLayout"
+        android:layout_below="@+id/labelPassword"
+        android:hint="Enter your password"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="2dp"
+        app:boxStrokeErrorColor="@color/purple_200"
+        app:boxStrokeWidthFocused="5dp"
+        android:layout_marginBottom="24dp"
+
+        app:helperTextTextColor="@color/red"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <android.widget.Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:id="@+id/buttonLogin"
+        android:text="Login"
+        android:backgroundTint="@color/myColor"
+        android:background="@drawable/custom_button_corner"
+        android:layout_below="@id/editTextPasswordLayout"
+        android:layout_alignParentLeft="true"/>
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:id="@+id/buttonCancel"
+        android:text="Cancel"
+        android:layout_below="@id/editTextPasswordLayout"
+        android:layout_alignParentRight="true"
+        />
+
+
+
+
+
+</RelativeLayout>
