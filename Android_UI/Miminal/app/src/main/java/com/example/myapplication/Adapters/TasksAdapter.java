@@ -24,6 +24,12 @@ public class TasksAdapter extends BaseAdapter {
         data = _data;
     }
 
+    public void updateData(List<TodoTask> _data) {
+        data.clear();
+        data.addAll(_data);
+        this.notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return data.size();
@@ -54,16 +60,17 @@ public class TasksAdapter extends BaseAdapter {
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goDetail(task.getId());
+                goDetail(task);
             }
         });
         return view;
 
     }
 
-    private void goDetail(int id) {
+    private void goDetail(TodoTask task) {
         Intent intent = new Intent(context, ItemActivity.class);
-        intent.putExtra("id", id);
+        intent.putExtra("id", task.getId());
+        intent.putExtra("name", task.getName());
         context.startActivity(intent);
     }
 

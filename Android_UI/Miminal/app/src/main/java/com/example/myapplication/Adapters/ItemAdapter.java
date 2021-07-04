@@ -26,6 +26,12 @@ public class ItemAdapter extends BaseAdapter {
         data = _data;
     }
 
+    public void updateData(List<TodoItem> _data) {
+        data.clear();
+        data.addAll(_data);
+        this.notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return data.size();
