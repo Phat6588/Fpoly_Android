@@ -6,35 +6,32 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.Database.SQLiteManager;
-import com.example.myapplication.Models.TodoItem;
-import com.example.myapplication.Models.TodoTask;
+import com.example.myapplication.Models.Items;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemDAO implements InterfaceItem{
+import static com.example.myapplication.Utilities.Constants.*;
 
+public class ItemsDAO implements IItems {
     SQLiteManager db;
-
-    public ItemDAO(Context context){
+    public ItemsDAO(Context context){
         db = new SQLiteManager(context);
     }
-
     @Override
-    public List<TodoItem> getByTaskId(int id) {
-        List<TodoItem> list = new ArrayList<>();
+    public List<Items> getByTaskId(String id) {
+        List<Items> list = new ArrayList<>();
         SQLiteDatabase database = db.getReadableDatabase();
         Cursor cursor = database
-                .rawQuery("SELECT * FROM "+SQLiteManager.DB_TABLE_ITEMS+" WHERE "+SQLiteManager.COLUMN_TASK_ID+" = ?",
+                .rawQuery("SELECT * FROM "+TABLE_TODO_ITEMS+" WHERE "+COLUMN_ITEM_TASK_ID+" = ?",
                         new String[]{String.valueOf(id)});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            Integer _id = cursor.getInt(0);
+            String _id = cursor.getString(0);
             Boolean status = cursor.getInt(1) == 1;
             String name = cursor.getString(2);
-            String color = cursor.getString(3);
-            Integer taskId = cursor.getInt(4);
-            TodoItem item = new TodoItem(_id, name, status, color, taskId);
+            String taskId = cursor.getString(3);
+            Items item = new Items(_id, name, status, taskId);
             list.add(item);
             cursor.moveToNext();
         }
@@ -43,20 +40,19 @@ public class ItemDAO implements InterfaceItem{
     }
 
     @Override
-    public TodoItem get(int id) {
-        TodoItem item = null;
+    public Items get(String id) {
+        Items item = null;
         SQLiteDatabase database = db.getReadableDatabase();
         Cursor cursor = database
-                .rawQuery("SELECT * FROM "+SQLiteManager.DB_TABLE_ITEMS+" WHERE "+SQLiteManager.COLUMN_ID+" = ?",
+                .rawQuery("SELECT * FROM "+TABLE_TODO_ITEMS+" WHERE "+COLUMN_ITEM_ID+" = ?",
                         new String[]{String.valueOf(id)});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            Integer _id = cursor.getInt(0);
+            String _id = cursor.getString(0);
             Boolean status = cursor.getInt(1) == 1;
             String name = cursor.getString(2);
-            String color = cursor.getString(3);
-            Integer taskId = cursor.getInt(4);
-            item = new TodoItem(_id, name, status, color, taskId);
+            String taskId = cursor.getString(3);
+            item = new Items(_id, name, status, taskId);
             cursor.moveToNext();
         }
         cursor.close();
@@ -64,24 +60,24 @@ public class ItemDAO implements InterfaceItem{
     }
 
     @Override
-    public boolean insert(TodoItem item) {
+    public boolean insert(Items item) {
         SQLiteDatabase database = db.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(SQLiteManager.COLUMN_NAME, item.getName());
-        values.put(SQLiteManager.COLUMN_COLOR, item.getColor());
-        values.put(SQLiteManager.COLUMN_STATUS, item.isStatus());
-        values.put(SQLiteManager.COLUMN_TASK_ID, item.getTaskId());
-        long row = database.insert(SQLiteManager.DB_TABLE_ITEMS, null, values);
+        values.put(COLUMN_ITEM_NAME, item.getName());
+        values.put(COLUMN_ITEM_ID, item.getId());
+        values.put(COLUMN_ITEM_STATUS, item.isStatus());
+        values.put(COLUMN_ITEM_TASK_ID, item.getTaskId());
+        long row = database.insert(TABLE_TODO_ITEMS, null, values);
         return row == 1;
     }
 
     @Override
-    public boolean update(TodoItem item) {
+    public boolean update(Items item) {
         SQLiteDatabase database = db.getWritableDatabase();
         ContentValues values = new ContentValues();
         String[] params = new String[]{String.valueOf(item.getId())};
-        values.put(SQLiteManager.COLUMN_STATUS, item.isStatus() == true ? 1 : 0);
-        int row = database.update(SQLiteManager.DB_TABLE_ITEMS, values, ""+SQLiteManager.COLUMN_ID+" = ?", params);
+        values.put(COLUMN_ITEM_STATUS, item.isStatus() == true ? 1 : 0);
+        int row = database.update(TABLE_TODO_ITEMS, values, ""+COLUMN_ITEM_ID+" = ?", params);
         return row == 1;
     }
 
@@ -89,7 +85,7 @@ public class ItemDAO implements InterfaceItem{
     public boolean delete(int id) {
         SQLiteDatabase database = db.getWritableDatabase();
         String[] params = new String[]{String.valueOf(id)};
-        int row = database.delete(SQLiteManager.DB_TABLE_ITEMS, ""+SQLiteManager.COLUMN_ID+" = ?", params);
+        int row = database.delete(TABLE_TODO_ITEMS, ""+COLUMN_ITEM_ID+" = ?", params);
         return row == 1;
     }
 }

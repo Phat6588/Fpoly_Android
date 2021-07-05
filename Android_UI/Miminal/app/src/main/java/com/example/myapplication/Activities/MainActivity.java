@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.myapplication.DAO.UsersDAO;
 import com.example.myapplication.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -34,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String _username = username.getText().toString();
                 String _pass = password.getText().toString();
-                if (_username.equals("fpoly") && _pass.equals("123")){
+                UsersDAO dao = new UsersDAO(MainActivity.this);
+                boolean isLoggedIn = dao.login(_username, _pass);
+                if (isLoggedIn == true){
                     // luu trang thai dang nhap
                     SharedPreferences.Editor editor =
                             getSharedPreferences("login_status",MODE_PRIVATE).edit();

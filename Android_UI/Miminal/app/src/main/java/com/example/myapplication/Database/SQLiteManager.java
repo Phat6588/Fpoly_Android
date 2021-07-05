@@ -4,42 +4,46 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class SQLiteManager extends SQLiteOpenHelper {
-    private static final int DB_VERSION = 2;
-    private static final String DB_NAME = "TODO.DB";
+import static com.example.myapplication.Utilities.Constants.*;
 
-    public static String DB_TABLE_TASKS = "TASKS";
-    public static String DB_TABLE_ITEMS = "ITEMS";
-    public static final String COLUMN_ID = "ID";
-    public static final String COLUMN_STATUS = "STATUS";
-    public static final String COLUMN_NAME = "NAME";
-    public static final String COLUMN_COLOR = "COLOR";
-    public static final String COLUMN_TASK_ID = "TASKID";
+public class SQLiteManager extends SQLiteOpenHelper {
+
 
     public SQLiteManager(Context context){
         super(context, DB_NAME, null, DB_VERSION);
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query = "Create Table IF NOT EXISTS " + DB_TABLE_TASKS +
+
+        String query = "CREATE TABLE IF NOT EXISTS "+TABLE_USER+" ( "+COLUMN_USERNAME+" TEXT PRIMARY KEY, "+COLUMN_PASSWORD+" TEXT )  ";
+        sqLiteDatabase.execSQL(query);
+
+        query = "Create Table IF NOT EXISTS " + TABLE_TODO_TASKS +
                 " ("
-                + COLUMN_ID + " Integer PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_NAME + " Text, "
-                + COLUMN_COLOR + " Text "
+                + COLUMN_TASK_ID + " Text PRIMARY KEY, "
+                + COLUMN_TASK_NAME + " Text "
                 + ");";
         sqLiteDatabase.execSQL(query);
 
-        query = "Create Table IF NOT EXISTS " + DB_TABLE_ITEMS +
+        query = "Create Table IF NOT EXISTS " + TABLE_TODO_ITEMS +
                 " ("
-                + COLUMN_ID + " Integer PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_STATUS + " Boolean, "
-                + COLUMN_NAME + " Text, "
-                + COLUMN_COLOR + " Text, "
-                + COLUMN_TASK_ID + " Text, "
-                + "FOREIGN KEY ("+COLUMN_TASK_ID+") REFERENCES "+DB_TABLE_TASKS+"("+COLUMN_ID+")"
+                + COLUMN_ITEM_ID + " Text PRIMARY KEY, "
+                + COLUMN_ITEM_STATUS + " Boolean, "
+                + COLUMN_ITEM_NAME + " Text, "
+                + COLUMN_ITEM_TASK_ID + " Text, "
+                + "FOREIGN KEY ("+COLUMN_ITEM_TASK_ID+") REFERENCES "+TABLE_TODO_TASKS+"("+COLUMN_TASK_ID+")"
                 + ");";
         sqLiteDatabase.execSQL(query);
 
+        query = "INSERT INTO "+TABLE_USER+" VALUES('admin', '123') ";
+        sqLiteDatabase.execSQL(query);
+
+        sqLiteDatabase.execSQL("INSERT INTO "+TABLE_TODO_TASKS+" VALUES('123e4567-e89b-12d3-a456-556642440000', 'Homework')");
+        sqLiteDatabase.execSQL("INSERT INTO "+TABLE_TODO_TASKS+" VALUES('123e4568-e89b-12d3-a456-556642440000', 'Learning')");
+        sqLiteDatabase.execSQL("INSERT INTO "+TABLE_TODO_TASKS+" VALUES('123e4569-e89b-12d3-a456-556642440000', 'Training')");
+
+        sqLiteDatabase.execSQL("INSERT INTO "+TABLE_TODO_ITEMS+" VALUES('123e4567-e89b-12d3-a456-556642440000', 1, 'Item 1', '123e4567-e89b-12d3-a456-556642440000')");
+        sqLiteDatabase.execSQL("INSERT INTO "+TABLE_TODO_ITEMS+" VALUES('123e4568-e89b-12d3-a456-556642440000', 0, 'Item 2', '123e4567-e89b-12d3-a456-556642440000')");
 
     }
 
@@ -57,12 +61,6 @@ public class SQLiteManager extends SQLiteOpenHelper {
             switch (upgradeTo)
             {
                 case 2:
-                    sqLiteDatabase.execSQL("INSERT INTO "+DB_TABLE_TASKS+"("+COLUMN_NAME+", "+COLUMN_COLOR+") VALUES('Homework', 'blue')");
-                    sqLiteDatabase.execSQL("INSERT INTO "+DB_TABLE_TASKS+"("+COLUMN_NAME+", "+COLUMN_COLOR+") VALUES('School', 'red')");
-                    sqLiteDatabase.execSQL("INSERT INTO "+DB_TABLE_TASKS+"("+COLUMN_NAME+", "+COLUMN_COLOR+") VALUES('Shopping', 'yellow')");
-
-                    sqLiteDatabase.execSQL("INSERT INTO "+DB_TABLE_ITEMS+" ("+COLUMN_STATUS+", "+COLUMN_NAME+", "+COLUMN_COLOR+", "+COLUMN_TASK_ID+") VALUES(1, 'Item 1', 'blue', 1)");
-                    sqLiteDatabase.execSQL("INSERT INTO "+DB_TABLE_ITEMS+"("+COLUMN_STATUS+", "+COLUMN_NAME+", "+COLUMN_COLOR+", "+COLUMN_TASK_ID+") VALUES(0, 'Item 2', 'yellow', 2)");
                     break;
                 case 3:
                     break;

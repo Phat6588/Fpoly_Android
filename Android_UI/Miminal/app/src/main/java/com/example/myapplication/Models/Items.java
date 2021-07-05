@@ -2,30 +2,28 @@ package com.example.myapplication.Models;
 
 import java.util.Date;
 
-public class TodoItem {
+public class Items {
 
-    private int id;
+    private String id;
     private String name;
     private boolean status;
-    private String color;
-    private int taskId;
+    private String taskId;
 
-    public TodoItem() {
+    public Items() {
     }
 
-    public TodoItem(int id, String name, boolean status, String color, int taskId) {
+    public Items(String id, String name, boolean status, String taskId) {
         this.id = id;
         this.name = name;
         this.status = status;
-        this.color = color;
         this.taskId = taskId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,19 +43,11 @@ public class TodoItem {
         this.status = status;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public int getTaskId() {
+    public String getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(int taskId) {
+    public void setTaskId(String taskId) {
         this.taskId = taskId;
     }
 }

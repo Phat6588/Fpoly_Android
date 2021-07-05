@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myapplication.Activities.ItemActivity;
-import com.example.myapplication.Models.TodoTask;
+import com.example.myapplication.Models.Tasks;
 import com.example.myapplication.R;
 
 import java.util.List;
@@ -17,14 +17,14 @@ import java.util.List;
 public class TasksAdapter extends BaseAdapter {
 
     private Context context;
-    private List<TodoTask> data;
+    private List<Tasks> data;
 
-    public TasksAdapter(Context _context, List<TodoTask> _data) {
+    public TasksAdapter(Context _context, List<Tasks> _data) {
         context = _context;
         data = _data;
     }
 
-    public void updateData(List<TodoTask> _data) {
+    public void updateData(List<Tasks> _data) {
         data.clear();
         data.addAll(_data);
         this.notifyDataSetChanged();
@@ -54,7 +54,7 @@ public class TasksAdapter extends BaseAdapter {
             view.setTag(holder);
         }
         ViewHolder holder = (ViewHolder) view.getTag();
-        TodoTask task = (TodoTask) getItem(_i);
+        Tasks task = (Tasks) getItem(_i);
         holder.text.setText(task.getName());
         holder.button.setTag(_i);
         holder.button.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class TasksAdapter extends BaseAdapter {
 
     }
 
-    private void goDetail(TodoTask task) {
+    private void goDetail(Tasks task) {
         Intent intent = new Intent(context, ItemActivity.class);
         intent.putExtra("id", task.getId());
         intent.putExtra("name", task.getName());

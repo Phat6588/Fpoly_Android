@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -11,21 +12,33 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.myapplication.Adapters.TasksAdapter;
-import com.example.myapplication.DAO.TaskDAO;
-import com.example.myapplication.Models.TodoTask;
+import com.example.myapplication.DAO.TasksDAO;
+import com.example.myapplication.Models.Tasks;
 import com.example.myapplication.R;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class TaskActivity extends AppCompatActivity {
 
     private TasksAdapter adapter;
-    private List<TodoTask> data;
+    private List<Tasks> data;
     private ListView listTasks;
     private Button buttonAddTask;
     private View view;
     private EditText editText;
     private Button buttonCancel, buttonSave;
+
+    final CollectionReference reference = FirebaseFirestore.getInstance().collection("tasks");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +48,14 @@ public class TaskActivity extends AppCompatActivity {
         listTasks = (ListView) findViewById(R.id.listTasks);
         buttonAddTask = (Button) findViewById(R.id.buttonAddTask);
 
-        data = (new TaskDAO(this)).get();
+        // dùng SQLite
+         data = (new TasksDAO(this)).get();
+
+        // FB
+//        data = new ArrayList<>();
+//        addListenerFB();
+//        getTasksFB();
+
         adapter = new TasksAdapter(this, data);
         listTasks.setAdapter(adapter);
 
@@ -70,12 +90,17 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String taskName = editText.getText().toString();
-                TodoTask todoTask = new TodoTask();
+                Tasks todoTask = new Tasks();
                 todoTask.setName(taskName);
-                TaskDAO dao = new TaskDAO(TaskActivity.this);
-                dao.insert(todoTask);
-                data = dao.get();
-                adapter.updateData(data);
+                todoTask.setId(UUID.randomUUID().toString());
+                TasksDAO dao = new TasksDAO(TaskActivity.this);
+                // dùng SQLite
+                 dao.insert(todoTask);
+                 data = dao.get();
+                 adapter.updateData(data);
+
+                // dùng fb
+//                addTaskToFB(todoTask);
 
                 dialog.dismiss();
             }
@@ -87,6 +112,69 @@ public class TaskActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+    }
+
+    private void addTaskToFB(Tasks task) {
+        Map map = new HashMap<String, String>();
+        map.put("id", task.getId());
+        map.put("name", task.getName());
+        reference.document(task.getId()).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+
+            }
+        });
+    }
+
+    private void addListenerFB(){
+        reference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot snapshot, FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(">>>>>>>>TAG", "Listen failed.", e);
+                    return;
+                }
+
+                if (snapshot != null && snapshot.size() > 0) {
+                    List<DocumentSnapshot> list = snapshot.getDocuments();
+                    List<Tasks> tasks = new ArrayList<>();
+                    for (DocumentSnapshot dc :list) {
+                        Map<String, Object> map =  dc.getData();
+                        String id = map.get("id").toString();
+                        String name = map.get("name").toString();
+                        Tasks task = new Tasks(id, name);
+                        tasks.add(task);
+                    }
+                    data = tasks;
+                    adapter.updateData(data);
+                } else {
+                    Log.d(">>>>>>>>>>>>>TAG", "Current data: null");
+                }
+            }
+        });
+    }
+
+    private void getTasksFB() {
+        reference.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<Tasks> tasks = new ArrayList<>();
+                            for (QueryDocumentSnapshot dc :task.getResult()) {
+                                Map<String, Object> map =  dc.getData();
+                                String id = map.get("id").toString();
+                                String name = map.get("name").toString();
+                                Tasks t = new Tasks(id, name);
+                                tasks.add(t);
+                            }
+                            data = tasks;
+                            adapter.updateData(data);
+                        } else {
+                            Log.d(">>>>>>>>>>>>>TAG", "Current data: null");
+                        }
+                    }
+                });
     }
 
 }

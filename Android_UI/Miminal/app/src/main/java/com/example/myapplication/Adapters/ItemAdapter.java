@@ -6,27 +6,28 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.myapplication.DAO.ItemDAO;
-import com.example.myapplication.Models.TodoItem;
-import com.example.myapplication.Models.TodoTask;
+import com.example.myapplication.DAO.ItemsDAO;
+import com.example.myapplication.Models.Items;
 import com.example.myapplication.R;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
 public class ItemAdapter extends BaseAdapter {
 
     private Context context;
-    private List<TodoItem> data;
+    private List<Items> data;
+    final CollectionReference reference = FirebaseFirestore.getInstance().collection("items");
 
-    public ItemAdapter(Context _context, List<TodoItem> _data) {
+    public ItemAdapter(Context _context, List<Items> _data) {
         context = _context;
         data = _data;
     }
 
-    public void updateData(List<TodoItem> _data) {
+    public void updateData(List<Items> _data) {
         data.clear();
         data.addAll(_data);
         this.notifyDataSetChanged();
@@ -56,7 +57,7 @@ public class ItemAdapter extends BaseAdapter {
             view.setTag(holder);
         }
         ViewHolder holder = (ViewHolder) view.getTag();
-        TodoItem item = (TodoItem) getItem(_i);
+        Items item = (Items) getItem(_i);
         holder.text.setText(item.getName());
         holder.checkBox.setChecked(item.isStatus());
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -69,10 +70,20 @@ public class ItemAdapter extends BaseAdapter {
 
     }
 
-    private void updateItem(TodoItem item, boolean isChecked){
-        ItemDAO dao = new ItemDAO(context);
+    private void updateItem(Items item, boolean isChecked){
+//        dùng sqlite
+        ItemsDAO dao = new ItemsDAO(context);
         item.setStatus(isChecked);
         dao.update(item);
+
+//        dùng fb
+//        Map map = new HashMap<String, Object>();
+//        map.put("id", item.getId());
+//        map.put("name", item.getName());
+//        map.put("status", isChecked == true ? "1" : "0");
+//        map.put("taskId", item.getTaskId());
+//        reference.document(item.getId()).set(map, SetOptions.merge());
+
     }
 
     private ViewHolder createViewHolderFrom(View view) {
