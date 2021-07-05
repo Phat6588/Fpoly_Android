@@ -67,12 +67,12 @@ public class ItemActivity extends AppCompatActivity {
         taskNameLabel.setText(taskName);
 
         // dùng SQLite
-        data = (new ItemsDAO(this)).getByTaskId(taskId);
+//        data = (new ItemsDAO(this)).getByTaskId(taskId);
 
         // dung FB
-//        data = new ArrayList<>();
-//        addListenerFB();
-//        getItemsFB();
+        data = new ArrayList<>();
+        addListenerFB();
+        getItemsFB();
 
 
         adapter = new ItemAdapter(this, data);
@@ -116,15 +116,13 @@ public class ItemActivity extends AppCompatActivity {
                 item.setStatus(false);
                 item.setTaskId(taskId);
 
-                ItemsDAO dao = new ItemsDAO(ItemActivity.this);
-                dao.insert(item);
-                data = dao.getByTaskId(taskId);
-                adapter.updateData(data);
-
-
+//                ItemsDAO dao = new ItemsDAO(ItemActivity.this);
+//                dao.insert(item);
+//                data = dao.getByTaskId(taskId);
+//                adapter.updateData(data);
 
                 // dung fb
-//                addItemToFB(item);
+                addItemToFB(item);
 
                 dialog.dismiss();
             }
@@ -158,7 +156,7 @@ public class ItemActivity extends AppCompatActivity {
             @Override
             public void onEvent(QuerySnapshot snapshot, FirebaseFirestoreException e) {
                 if (e != null) {
-                    Log.w(">>>>>>>>TAG", "Listen failed.", e);
+                    Log.w("TAG", "Listen failed.", e);
                     return;
                 }
 
@@ -178,7 +176,7 @@ public class ItemActivity extends AppCompatActivity {
                     data = items;
                     adapter.updateData(data);
                 } else {
-                    Log.d(">>>>>>>>>>>>>TAG", "Current data: null");
+                    Log.d("TAG", "Current data: null");
                 }
             }
         });
@@ -204,7 +202,7 @@ public class ItemActivity extends AppCompatActivity {
                             data = items;
                             adapter.updateData(data);
                         } else {
-                            Log.d(">>>>>>>>>>>>>TAG", "Current data: null");
+                            Log.d("TAG", "Current data: null");
                         }
                     }
                 });

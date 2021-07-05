@@ -49,12 +49,12 @@ public class TaskActivity extends AppCompatActivity {
         buttonAddTask = (Button) findViewById(R.id.buttonAddTask);
 
         // dùng SQLite
-         data = (new TasksDAO(this)).get();
+//         data = (new TasksDAO(this)).get();
 
         // FB
-//        data = new ArrayList<>();
-//        addListenerFB();
-//        getTasksFB();
+        data = new ArrayList<>();
+        addListenerFB();
+        getTasksFB();
 
         adapter = new TasksAdapter(this, data);
         listTasks.setAdapter(adapter);
@@ -68,24 +68,18 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     private void showDialog() {
-        // for dialog
         LayoutInflater layoutInflater = LayoutInflater.from(TaskActivity.this);
         view = layoutInflater.inflate(R.layout.dialog_add_new, null, false);
         editText = (EditText) view.findViewById(R.id.textViewName);
         buttonSave = (Button) view.findViewById(R.id.buttonSave);
         buttonCancel = (Button) view.findViewById(R.id.buttonCancel);
-
-        // Create a AlertDialog Builder.
         AlertDialog.Builder builder = new AlertDialog.Builder(TaskActivity.this);
-        // Set title, icon, can not cancel properties.
         builder.setTitle("Add new task.");
         builder.setIcon(R.drawable.ic_launcher_background);
         builder.setCancelable(false);
         builder.setView(view);
-
         final AlertDialog dialog = builder.create();
         dialog.show();
-
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,12 +89,12 @@ public class TaskActivity extends AppCompatActivity {
                 todoTask.setId(UUID.randomUUID().toString());
                 TasksDAO dao = new TasksDAO(TaskActivity.this);
                 // dùng SQLite
-                 dao.insert(todoTask);
-                 data = dao.get();
-                 adapter.updateData(data);
+//                 dao.insert(todoTask);
+//                 data = dao.get();
+//                 adapter.updateData(data);
 
                 // dùng fb
-//                addTaskToFB(todoTask);
+                addTaskToFB(todoTask);
 
                 dialog.dismiss();
             }
@@ -131,10 +125,9 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onEvent(QuerySnapshot snapshot, FirebaseFirestoreException e) {
                 if (e != null) {
-                    Log.w(">>>>>>>>TAG", "Listen failed.", e);
+                    Log.w("TAG", "Listen failed.", e);
                     return;
                 }
-
                 if (snapshot != null && snapshot.size() > 0) {
                     List<DocumentSnapshot> list = snapshot.getDocuments();
                     List<Tasks> tasks = new ArrayList<>();
@@ -148,7 +141,7 @@ public class TaskActivity extends AppCompatActivity {
                     data = tasks;
                     adapter.updateData(data);
                 } else {
-                    Log.d(">>>>>>>>>>>>>TAG", "Current data: null");
+                    Log.d("TAG", "Current data: null");
                 }
             }
         });
@@ -171,7 +164,7 @@ public class TaskActivity extends AppCompatActivity {
                             data = tasks;
                             adapter.updateData(data);
                         } else {
-                            Log.d(">>>>>>>>>>>>>TAG", "Current data: null");
+                            Log.d("TAG", "Current data: null");
                         }
                     }
                 });

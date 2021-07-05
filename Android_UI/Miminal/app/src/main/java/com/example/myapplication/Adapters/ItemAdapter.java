@@ -13,14 +13,16 @@ import com.example.myapplication.Models.Items;
 import com.example.myapplication.R;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ItemAdapter extends BaseAdapter {
 
     private Context context;
     private List<Items> data;
-    final CollectionReference reference = FirebaseFirestore.getInstance().collection("items");
 
     public ItemAdapter(Context _context, List<Items> _data) {
         context = _context;
@@ -72,17 +74,19 @@ public class ItemAdapter extends BaseAdapter {
 
     private void updateItem(Items item, boolean isChecked){
 //        dùng sqlite
-        ItemsDAO dao = new ItemsDAO(context);
-        item.setStatus(isChecked);
-        dao.update(item);
+//        ItemsDAO dao = new ItemsDAO(context);
+//        item.setStatus(isChecked);
+//        dao.update(item);
 
 //        dùng fb
-//        Map map = new HashMap<String, Object>();
-//        map.put("id", item.getId());
-//        map.put("name", item.getName());
-//        map.put("status", isChecked == true ? "1" : "0");
-//        map.put("taskId", item.getTaskId());
-//        reference.document(item.getId()).set(map, SetOptions.merge());
+        final CollectionReference reference = FirebaseFirestore.getInstance().collection("items");
+
+        Map map = new HashMap<String, Object>();
+        map.put("id", item.getId());
+        map.put("name", item.getName());
+        map.put("status", isChecked == true ? "1" : "0");
+        map.put("taskId", item.getTaskId());
+        reference.document(item.getId()).set(map, SetOptions.merge());
 
     }
 
