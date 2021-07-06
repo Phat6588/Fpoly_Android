@@ -21,7 +21,7 @@ public class UsersDAO implements IUsers{
         SQLiteDatabase database = db.getReadableDatabase();
         Cursor cursor = database.rawQuery(query, new String[]{username});
         cursor.moveToFirst();
-        String pass = cursor.getString(1);
+        String pass = cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD));
         // mã hóa
         cursor.close();
         return pass.equals(password);
