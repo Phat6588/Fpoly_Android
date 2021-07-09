@@ -23,4 +23,11 @@ public class Constants {
     public static final String STATUS_FALSE = "0";
 
     public static final int ROW_EFFECTED = 1;
+
+    public static final String LOGIN_STATUS = "LOGIN_STATUS";
+    public static final String IS_LOGGED_IN = "IS_LOGGED_IN";
+    public static final String LOGIN_FAILED = "LOGIN_FAILED";
+
+    public static final String ADD_NEW_TASK = "Add new task";
+
 }

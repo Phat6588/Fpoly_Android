@@ -5,7 +5,9 @@
     android:layout_height="80dp"
     android:background="@drawable/custom_background"
     android:elevation="20dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp">
     <TextView
         android:id="@+id/textViewItemName"
         android:layout_width="wrap_content"
@@ -15,8 +17,8 @@
         android:text="Homework"
         android:textColor="@color/design_default_color_secondary"
         android:textSize="20sp"/>
-    <RadioButton
-        android:id="@+id/radioButton"
+    <CheckBox
+        android:id="@+id/checkboxButton"
         android:layout_width="50dp"
         android:layout_height="80dp"
         android:layout_alignParentEnd="true"
