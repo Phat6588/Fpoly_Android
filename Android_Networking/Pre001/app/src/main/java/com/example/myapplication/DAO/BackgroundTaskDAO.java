@@ -13,8 +13,10 @@ public class BackgroundTaskDAO implements InterfaceBackgroundTask{
     }
 
     @Override
-    public boolean insert() {
-        return false;
+    public String insert(String url, String data) {
+        APIManager apiManager = new APIManager();
+        String code = apiManager.post(url, data);
+        return code;
     }
 
     @Override

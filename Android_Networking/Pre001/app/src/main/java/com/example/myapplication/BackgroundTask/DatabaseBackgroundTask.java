@@ -18,14 +18,26 @@ public class DatabaseBackgroundTask extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... strings) {
         BackgroundTaskDAO dao = new BackgroundTaskDAO();
-        return dao.get(strings[0]);
+        String method = strings[0];
+        String data = "";
+        switch (method){
+            case "GET":
+                data = dao.get(strings[1]);
+                break;
+            case "POST":
+                data = String.valueOf(dao.insert(strings[1], strings[2]));
+                break;
+            default:
+                break;
+        }
+        return data;
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         // hien thi du lieu len TextView
-        TextView textView3 = (TextView) contextParent.findViewById(R.id.textView3);
-        textView3.setText(s);
+//        TextView textView3 = (TextView) contextParent.findViewById(R.id.textView3);
+//        textView3.setText(s);
     }
 }
