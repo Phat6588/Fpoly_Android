@@ -16,8 +16,10 @@ import static com.example.demoapptodo.Utilities.Constants.*;
 public class TasksDAO implements ITasks{
 
     SQLiteManager db;
-    public TasksDAO(Context context){
-        db = new SQLiteManager(context);
+    private Context context;
+    public TasksDAO(Context _context){
+        db = new SQLiteManager(_context);
+        this.context = _context;
     }
 
     @Override
@@ -61,6 +63,18 @@ public class TasksDAO implements ITasks{
         values.put(COLUMN_TASK_ID, tasks.getId());
         values.put(COLUMN_TASK_NAME, tasks.getName());
         long row = database.insert(TABLE_TODO_TASKS, null, values);
+        return row == ROW_EFFECTED;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        // xoa ben bang items
+        ItemsDAO dao = new ItemsDAO(context);
+        dao.delete(id);
+        // xoa bang tasks
+        SQLiteDatabase database = db.getWritableDatabase();
+        long row = database.delete(TABLE_TODO_TASKS," "+COLUMN_TASK_ID+" = ? ",
+                                                new String[]{id});
         return row == ROW_EFFECTED;
     }
 }

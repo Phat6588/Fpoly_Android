@@ -80,4 +80,14 @@ public class ItemsDAO implements IItems{
                 new String[]{items.getId()});
         return row == ROW_EFFECTED;
     }
+
+    // xoa item bằng taskId
+    // delete items where taskId =
+    @Override
+    public boolean delete(String taskId) {
+        SQLiteDatabase database = db.getWritableDatabase();
+        long row = database.delete(TABLE_TODO_ITEMS," "+COLUMN_ITEM_TASK_ID+" = ? ",
+                new String[]{taskId});
+        return row >= ROW_EFFECTED;
+    }
 }

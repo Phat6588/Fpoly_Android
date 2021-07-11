@@ -10,4 +10,5 @@ public interface IItems {
     Items get(String id); // select * from items where id =
     boolean insert(Items items); // insert into items values()
     boolean update(Items items); // update items set .... where id =
+    boolean delete(String id);
 }
