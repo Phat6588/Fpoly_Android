@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity android:name=".LinearActivity">
-
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
