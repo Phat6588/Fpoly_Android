@@ -114,8 +114,8 @@ public class PhepToanActivity extends AppCompatActivity
 
                 // retrofit dung enqueue
                 // interfaceRetrofitAPI.get().enqueue(getStudentCB);
-                interfaceRetrofitAPI.post(new Student("1", "nguyễn nam")).enqueue(postCB);
-
+                // interfaceRetrofitAPI.post(new Student("1", "nguyễn nam")).enqueue(postCB);
+                interfaceRetrofitAPI.getOne().enqueue(getOneStudentCB);
             }
         });
     }
@@ -253,6 +253,14 @@ public class PhepToanActivity extends AppCompatActivity
 
 
 
+
+
+
+
+
+
+
+
     // retrofit
 
     private void createRetrofitAPI() {
@@ -270,6 +278,22 @@ public class PhepToanActivity extends AppCompatActivity
     }
 
 
+    Callback<Student> getOneStudentCB = new Callback<Student>() {
+        @Override
+        public void onResponse(Call<Student> call, retrofit2.Response<Student> response) {
+            if (response.isSuccessful()) {
+                Student list = response.body();
+                Log.e("Result", "Paaaaaaaaaaaa :: >>>>" + list.getName());
+            } else {
+                Log.e("Result", "Put Response Code :: >>>>" + response.message());
+            }
+        }
+        @Override
+        public void onFailure(Call<Student> call, Throwable t) {t.printStackTrace(); }
+    };
+
+
+
     Callback<List<Student>> getStudentCB = new Callback<List<Student>>() {
         @Override
         public void onResponse(Call<List<Student>> call, retrofit2.Response<List<Student>> response) {
@@ -280,7 +304,6 @@ public class PhepToanActivity extends AppCompatActivity
                 Log.e("Result", "Put Response Code :: >>>>" + response.message());
             }
         }
-
         @Override
         public void onFailure(Call<List<Student>> call, Throwable t) {
             t.printStackTrace();
@@ -297,11 +320,8 @@ public class PhepToanActivity extends AppCompatActivity
                 Log.e("Result", "Put Response Code :: >>>>" + response.message());
             }
         }
-
         @Override
-        public void onFailure(Call<List<Student>> call, Throwable t) {
-
-        }
+        public void onFailure(Call<List<Student>> call, Throwable t) {}
     };
 
 

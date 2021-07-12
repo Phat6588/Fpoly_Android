@@ -15,6 +15,9 @@ public interface InterfaceRetrofitAPI {
     @POST("api/test.php/")
     Call<List<Student>> post(@Body Student student);
 
+    @GET("api/test.php/")
+    Call<Student> getOne();
+
 //    @GET("/repos/{owner}/{repo}/issues")
 //    Single<List<GithubIssue>> getIssues(@Path("owner") String owner, @Path("repo") String repository);
 
