@@ -59,12 +59,12 @@ public class TaskActivity extends AppCompatActivity {
         listTasks = (ListView) findViewById(R.id.listTasks);
 
         // dùng SQLite
-         data = (new TasksDAO(this)).get();
+         // data = (new TasksDAO(this)).get();
 
         // dùng firebase
-//        addListenerFirebase();
-//        data = new ArrayList<>();
-//        getTasksFromFirebase();
+        addListenerFirebase();
+        data = new ArrayList<>();
+        getTasksFromFirebase();
 
         adapter = new TaskAdapter(this, data);
         listTasks.setAdapter(adapter);
@@ -180,3 +180,20 @@ public class TaskActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
