@@ -1,6 +1,8 @@
 package com.example.myapplication.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +18,18 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.myapplication.BackgroundTask.DatabaseBackgroundTask;
 import com.example.myapplication.Model.Person;
+import com.example.myapplication.Model.Student;
+import com.example.myapplication.Model.ThaThinh;
+import com.example.myapplication.MyRetrofit.IRetrofitService;
+import com.example.myapplication.MyRetrofit.RetrofitBuilder;
 import com.example.myapplication.MyVolley.VolleySingleton;
 import com.example.myapplication.R;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
+
+import java.util.List;
+import java.util.Random;
 
 public class PhepToanActivity extends AppCompatActivity {
 
@@ -30,10 +39,16 @@ public class PhepToanActivity extends AppCompatActivity {
 
     private String url = "http://10.0.2.2:8081/api/test.php";
 
+
+
+    private IRetrofitService service;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phep_toan);
+
+        service = RetrofitBuilder.createService(IRetrofitService.class);
 
         textView3 = (TextView) findViewById(R.id.textView3);
         button3 = (Button) findViewById(R.id.button3);
@@ -43,12 +58,23 @@ public class PhepToanActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String id = editText1.getText().toString();
-                String name = editText2.getText().toString();
-                Person p = new Person(id, name);
+                String ten = editText1.getText().toString();
+                String luong = editText2.getText().toString();
+                // Person p = new Person(id, name);
                 // postToServerByVolley(p);
                 // getFromServerByVolley();
-                getArrayFromServerByVolley();
+                // getArrayFromServerByVolley();
+
+
+                // service.get().enqueue(getOneCallback);
+                // service.getArray().enqueue(getArrayCallback);
+
+                // service.postPerson(new Student(ten, Double.parseDouble(luong), 0.0));
+                Random r = new Random();
+                int low = 1;
+                int high = 7;
+                int number = r.nextInt(high-low) + low;
+                service.thaThinh(new ThaThinh(number, null)).enqueue(postThaThinhCallback);
             }
         });
     }
@@ -99,8 +125,6 @@ public class PhepToanActivity extends AppCompatActivity {
         };
         VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
-
-
     private void getFromServerByVolley(){
         VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -123,8 +147,6 @@ public class PhepToanActivity extends AppCompatActivity {
                 });
         VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
-
-
     private void getArrayFromServerByVolley(){
         VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -153,9 +175,71 @@ public class PhepToanActivity extends AppCompatActivity {
 
 
     // start using Retrofit
+    Callback<Person> getOneCallback = new Callback<Person>() {
+        @Override
+        public void onResponse(Call<Person> call, retrofit2.Response<Person> response) {
+            if (response.isSuccessful()){
+                Person person = response.body();
+                textView3.setText(person.getName());
+            }
+        }
 
+        @Override
+        public void onFailure(Call<Person> call, Throwable t) {
+
+        }
+    };
+
+    Callback<List<Person>> getArrayCallback = new Callback<List<Person>>() {
+        @Override
+        public void onResponse(Call<List<Person>> call, retrofit2.Response<List<Person>> response) {
+            if (response.isSuccessful()){
+                List<Person> list = response.body();
+                textView3.setText(list.get(0).getName() + "  " + list.get(1).getName());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<List<Person>> call, Throwable t) {
+
+        }
+    };
+
+    Callback<Student> postPersonCallback = new Callback<Student>() {
+        @Override
+        public void onResponse(Call<Student> call, retrofit2.Response<Student> response) {
+            if (response.isSuccessful()){
+                Student st = response.body();
+                textView3.setText(st.getTen() + "  " + st.getLuong() + " " + st.getThuNhap());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Student> call, Throwable t) {
+
+        }
+    };
+
+    Callback<ThaThinh> postThaThinhCallback = new Callback<ThaThinh>() {
+        @Override
+        public void onResponse(Call<ThaThinh> call, retrofit2.Response<ThaThinh> response) {
+            if (response.isSuccessful()){
+                ThaThinh st = response.body();
+                textView3.setText(st.getSentence());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ThaThinh> call, Throwable t) {
+
+        }
+    };
 
 
     // end using Retrofit
+
+
+
+
 
 }

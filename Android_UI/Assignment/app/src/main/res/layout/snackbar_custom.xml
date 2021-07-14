@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:padding="5dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/load_icon_quang_cao" />
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="bottom"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:id="@+id/txtTieuDeQC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Võ Lâm Truyền Kỳ Mobile" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/txtNoiDungQC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="16 năm - Hoàng Kim Tái Khởi" />
+
+    </LinearLayout>
+
+    <Button
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_button_nenxanh"
+        android:paddingVertical="0dp"
+        android:layout_gravity="center"
+        android:id="@+id/btnDownloadQC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:textAllCaps="false"
+        android:text="Tải ngay" />
+</LinearLayout>

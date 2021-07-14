@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Assignment</string>
+    <string name="status_start">Quản lý chi tiêu cá nhân và hoàn thiện mục tiêu tài chính.</string>
+    <string name="dangky">Lần đầu sử dụng Money Lover</string>
+    <string name="dangnhap">Đã sử dụng Money Lover</string>
+    <string name="thongbao_dangnhap">Chúng tôi không cho phép đăng thông tin mà không có sự cho phép của bạn.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ngan_sach">
+        Một kế hoạch tài chính giúp bạn cân bằng được khoảng thu và khoảng chi của mình.
+    </string>
+    <string name="su_kien">
+        Tạo một sự kiện trong ứng dụng để theo dõi việc chi tiêu trong một sự kiện có thực nào đó, ví dụ như đi du lịch cuối tuần.
+    </string>
+    <string name="giao_dich">
+        Tạo ra định kỳ các giao dịch sẽ được tự động thêm trong tương lai.
+    </string>
+    <string name="hoa_don">
+        Theo dõi hóa đơn của bạn như điện, thuê, thuê bao Internet...
+    </string>
+    <string name="title_activity_percent_layout">PercentLayoutActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_collapsing">CollapsingActivity</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <!--    <string name="banner_ad_unit_id">ca-app-pub-2649191814669466/4685656132</string>-->
+    <string name="search_hint">Tìm kiếm</string>
+    <string name="noi_dung_ngan_sach">
+        Giao dịch này không nằm trong ngân sách nào cả, nhưng nó nên được nằm trong một ngân sách nào đó để
+        bạn có thể quản lý tài chính tốt hơn.
+    </string>
+</resources>

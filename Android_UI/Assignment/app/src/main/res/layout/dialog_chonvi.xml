@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_nen_dialog">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_green_gradient"
+        app:contentInsetEnd="15dp"
+        app:contentInsetStart="15dp"
+        android:id="@+id/toolBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center|left"
+                android:id="@+id/txtTieuDeThemSV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Chọn ví" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imgThoatChonVi"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/ic_dialog_close" />
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/rdoGroupVi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:textColor="#AAAAAA"
+                android:checked="true"
+                android:button="@drawable/selector_vicoban"
+                android:textSize="18sp"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="11dp"
+                android:background="@drawable/selector_bg_nen_rdo"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/rdoViCoBan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ví cơ bản" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:textColor="#AAAAAA"
+                android:button="@drawable/selector_vilienket"
+                android:textSize="18sp"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="11dp"
+                android:background="@drawable/selector_bg_nen_rdo"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/rdoViLienKet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ví liên kết" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:textColor="#AAAAAA"
+                android:button="@drawable/selector_vitindung"
+                android:textSize="18sp"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="11dp"
+                android:background="@drawable/selector_bg_nen_rdo"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/rdoViTinDung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ví tín dụng" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:textColor="#AAAAAA"
+                android:button="@drawable/selector_vitietkiem"
+                android:textSize="18sp"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="11dp"
+                android:background="@drawable/selector_bg_nen_rdo"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/rdoViTietKiem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ví tiết kiệm" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnChon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_button_xanh_gradient"
+            android:paddingVertical="10dp"
+            android:text="Chọn"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.TruotActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:background="#F4F4F4"
+        android:id="@+id/appBarLayout"
+        android:theme="@style/ScrollTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            android:layout_height="330dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:paddingHorizontal="110dp"
+                android:paddingTop="80dp"
+                app:layout_collapseMode="parallax"
+                android:src="@drawable/avatar_huy"
+                android:contentDescription="@string/ngan_sach"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"/>
+
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="200dp"
+                android:gravity="center"
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đặng Hoàng Huy" />
+
+            <TextView
+                android:layout_marginTop="225dp"
+                android:gravity="center"
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="huydh54@gmail.com" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBarLab"
+                app:contentInsetStartWithNavigation="0dp"
+                app:titleTextColor="@color/black"
+                android:layout_marginLeft="0dp"
+                app:navigationIcon="@drawable/ic_toolbar_back"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="Cài đặt"
+                app:layout_collapseMode="pin"/>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="1200dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1200dp">
+
+            <ListView
+                android:nestedScrollingEnabled="true"
+                android:layout_width="match_parent"
+                android:layout_height="1200dp"
+                android:id="@+id/lvCaiDat"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:layout_marginRight="30dp"
+        android:elevation="6dp"
+        app:fab_icon="@drawable/ic_setting_lab"
+        app:layout_anchor="@id/appBarLayout"
+        app:pressedTranslationZ="12dp"
+        app:fab_colorNormal="@color/bg_black_green"
+        app:fab_colorPressed="#009F4F"
+        android:layout_width="wrap_content"
+        app:layout_anchorGravity="bottom|center|right"
+        android:layout_height="wrap_content"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

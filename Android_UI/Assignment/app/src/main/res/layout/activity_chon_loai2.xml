@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_xamnhat"
+    tools:context=".Fragment.MainFragment.LoaiFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbChonLoai"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="3dp"
+        android:theme="@style/SearchViewStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_search"
+        app:navigationIcon="@drawable/ic_back_black"
+        app:title="Chọn nhóm"
+        app:titleTextColor="@color/black" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/lnChonLoai"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_marginBottom="30dp"
+                android:elevation="3dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="76dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/txtTieuDeVayBS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VAY NỢ" />
+
+                <ListView
+                    android:nestedScrollingEnabled="false"
+                    android:id="@+id/lvVayNoBS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@color/bg_xamnhat"
+                    android:dividerHeight="0dp">
+
+                </ListView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginBottom="30dp"
+                android:elevation="3dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="76dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/txtTieuDeThuBS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="KHOẢN THU" />
+
+                <ListView
+                    android:nestedScrollingEnabled="false"
+                    android:id="@+id/lvLoaiThuBS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@color/bg_xamnhat"
+                    android:dividerHeight="0dp">
+
+                </ListView>
+
+                <Button
+                    android:id="@+id/btnThemLoaiThuBS"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_button_khongnen_trang"
+                    android:drawableLeft="@drawable/ic_chonloai_plus"
+                    android:drawablePadding="26dp"
+                    android:gravity="left|center"
+                    android:paddingHorizontal="26dp"
+                    android:text="LOẠI THU MỚI"
+                    android:textColor="@color/bg_black_green" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="30dp"
+                android:elevation="3dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="76dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/txtTieuDeChiBS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="KHOẢN CHI" />
+
+                <ListView
+                    android:nestedScrollingEnabled="false"
+                    android:id="@+id/lvLoaiChiBS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@color/bg_xamnhat"
+                    android:dividerHeight="0dp">
+
+                </ListView>
+
+                <Button
+                    android:id="@+id/btnThemLoaiChiBS"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_button_khongnen_trang"
+                    android:drawableLeft="@drawable/ic_chonloai_plus"
+                    android:drawablePadding="26dp"
+                    android:gravity="left|center"
+                    android:paddingHorizontal="26dp"
+                    android:text="LOẠI CHI MỚI"
+                    android:textColor="@color/bg_black_green" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

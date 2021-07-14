@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/thongbao"
+        app:iconTint="@color/black"
+        android:icon="@drawable/ic_thongbao"
+        app:showAsAction="always"
+        android:title="Thông báo" />
+    <item
+        android:id="@+id/khoangthoigian"
+        app:showAsAction="never"
+        android:title="Khoảng thời gian" />
+    <item
+        android:id="@+id/xemtheonhom"
+        app:showAsAction="never"
+        android:title="Xem theo nhóm" />
+    <item
+        android:id="@+id/dieuchinhsodu"
+        app:showAsAction="never"
+        android:title="Điều chỉnh số dư" />
+    <item
+        android:id="@+id/chuyenvikhac"
+        app:showAsAction="never"
+        android:title="Chuyển tiền đến ví khác" />
+    <item
+        android:id="@+id/timgiaodich"
+        app:showAsAction="never"
+        android:title="Tìm giao dịch" />
+    <item
+        android:id="@+id/dongbohoa"
+        app:showAsAction="never"
+        android:title="Đồng bộ hóa" />
+</menu>

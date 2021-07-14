@@ -1,7 +1,5 @@
 package com.example.myapplication.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -24,14 +22,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myapplication.BackgroundTask.DatabaseBackgroundTask;
 import com.example.myapplication.BackgroundTask.DatabaseBackgroundTaskLoader;
 import com.example.myapplication.DAO.InterfaceRetrofitAPI;
-import com.example.myapplication.DAO.RetrofitAPI;
 import com.example.myapplication.Database.APIManager;
-import com.example.myapplication.LoaderActivity;
+import com.example.myapplication.Model.AccessToken;
+import com.example.myapplication.Model.RetrofitBuilder;
 import com.example.myapplication.Model.Student;
-import com.example.myapplication.MyAsyncTaskLoader;
+import com.example.myapplication.Model.TokenManager;
 import com.example.myapplication.R;
 import com.example.myapplication.Singleton.MySingleton;
 import com.google.gson.Gson;
@@ -39,10 +36,7 @@ import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 public class PhepToanActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<String>,
@@ -62,11 +56,16 @@ public class PhepToanActivity extends AppCompatActivity
 
     private InterfaceRetrofitAPI interfaceRetrofitAPI;
 
+    TokenManager tokenManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phep_toan);
+
+        tokenManager = TokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
+
+
 
         textView3 = (TextView) findViewById(R.id.textView3);
         button3 = (Button) findViewById(R.id.button3);
@@ -76,7 +75,8 @@ public class PhepToanActivity extends AppCompatActivity
 
         this.loaderManager = LoaderManager.getInstance(this);
 
-        createRetrofitAPI();
+        interfaceRetrofitAPI = RetrofitBuilder.createService(InterfaceRetrofitAPI.class);
+//        createRetrofitAPI();
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +116,7 @@ public class PhepToanActivity extends AppCompatActivity
                 // interfaceRetrofitAPI.get().enqueue(getStudentCB);
                 // interfaceRetrofitAPI.post(new Student("1", "nguyễn nam")).enqueue(postCB);
                 interfaceRetrofitAPI.getOne().enqueue(getOneStudentCB);
+                interfaceRetrofitAPI.login(new Student(null, null, "123", "123")).enqueue(loginCB);
             }
         });
     }
@@ -132,16 +133,16 @@ public class PhepToanActivity extends AppCompatActivity
 
     @Override
     public Loader<String> onCreateLoader(int id, Bundle args) {
-        switch (id) {
-            case GET_API:
-                return new DatabaseBackgroundTaskLoader(PhepToanActivity.this, "param1", "param2");
-            case POST_API:
-                Student student = new Student("123", "Nguyễn Hoàng");
-                String param2 = APIManager.itemToJSON(student).toString();
-                return new DatabaseBackgroundTaskLoader(PhepToanActivity.this, "POST", url, param2);
-            default:
-                break;
-        }
+//        switch (id) {
+//            case GET_API:
+//                return new DatabaseBackgroundTaskLoader(PhepToanActivity.this, "param1", "param2");
+//            case POST_API:
+//                Student student = new Student("123", "Nguyễn Hoàng");
+//                String param2 = APIManager.itemToJSON(student).toString();
+//                return new DatabaseBackgroundTaskLoader(PhepToanActivity.this, "POST", url, param2);
+//            default:
+//                break;
+//        }
         throw new RuntimeException("TODO..");
     }
 
@@ -310,19 +311,22 @@ public class PhepToanActivity extends AppCompatActivity
         }
     };
 
-    Callback<List<Student>> postCB = new Callback<List<Student>>() {
+    Callback<AccessToken> loginCB = new Callback<AccessToken>() {
         @Override
-        public void onResponse(Call<List<Student>> call, retrofit2.Response<List<Student>> response) {
+        public void onResponse(Call<AccessToken> call, retrofit2.Response<AccessToken> response) {
             if (response.isSuccessful()) {
-                List<Student> list = response.body();
-                list.forEach(s -> Log.e(">>>>>>>>>>>",s.getName()));
+                AccessToken token = response.body();
+                tokenManager.saveToken(response.body());
             } else {
                 Log.e("Result", "Put Response Code :: >>>>" + response.message());
             }
         }
         @Override
-        public void onFailure(Call<List<Student>> call, Throwable t) {}
+        public void onFailure(Call<AccessToken> call, Throwable t) {}
     };
+
+
+
 
 
 

@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bwindow"
+    tools:context=".Activity.GuidelineActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hangcon12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cotcon21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hang1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hang2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hang3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hangcon43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hang4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cot1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cot2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.666"
+        android:orientation="vertical" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cotcon34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.825" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/bg_trangduc"
+        app:layout_constraintBottom_toTopOf="@+id/hang1"
+        app:layout_constraintEnd_toStartOf="@+id/cot1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:textSize="18sp"
+            android:gravity="bottom|center"
+            android:textColor="@color/white"
+            android:id="@+id/txtThu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thứ tư" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textSize="56sp"
+            android:gravity="center|top"
+            android:textColor="@color/white"
+            android:id="@+id/txtNgay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="14" />
+    </LinearLayout>
+
+    <ImageView
+        android:padding="5dp"
+        android:src="@drawable/ic_window_phone"
+        android:background="@color/bg_trangduc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cot1"
+        app:layout_constraintEnd_toStartOf="@+id/cotcon21"
+        app:layout_constraintBottom_toTopOf="@+id/hangcon12"/>
+
+    <ImageView
+        android:padding="10dp"
+        android:src="@drawable/ic_window_chat"
+        android:background="@color/bg_trangduc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintTop_toBottomOf="@id/hangcon12"
+        app:layout_constraintStart_toStartOf="@id/cot1"
+        app:layout_constraintEnd_toStartOf="@+id/cotcon21"
+        app:layout_constraintBottom_toTopOf="@+id/hang1"/>
+
+    <ImageView
+        android:padding="10dp"
+        android:src="@drawable/icon_window_skype"
+        android:background="#4DC8FF"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cotcon21"
+        app:layout_constraintEnd_toStartOf="@+id/cot2"
+        app:layout_constraintBottom_toTopOf="@+id/hangcon12"/>
+
+    <ImageView
+        android:padding="10dp"
+        android:src="@drawable/icon_window_facebook"
+        android:background="#1E5FAF"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintTop_toBottomOf="@id/hangcon12"
+        app:layout_constraintStart_toStartOf="@id/cotcon21"
+        app:layout_constraintEnd_toStartOf="@+id/cot2"
+        app:layout_constraintBottom_toTopOf="@+id/hang1"/>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/bg_trangduc"
+        app:layout_constraintBottom_toTopOf="@+id/hang1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cot2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt131"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LivingSocial" />
+
+        <TextView
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt132"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Up to 35$ to" />
+
+        <TextView
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt133"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spend at..." />
+        <TextView
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt134"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Outlook Mail" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/bg_trangduc"
+        app:layout_constraintBottom_toTopOf="@+id/hang2"
+        app:layout_constraintEnd_toStartOf="@+id/cot2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hang1">
+
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/icon_window_vongtron" />
+        <TextView
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt211"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cortana" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/avatar"
+        app:layout_constraintBottom_toTopOf="@+id/hang2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cot2"
+        app:layout_constraintTop_toBottomOf="@id/hang1">
+
+        <TextView
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt221"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Me" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/bg_trangduc"
+        app:layout_constraintBottom_toTopOf="@+id/hang3"
+        app:layout_constraintEnd_toStartOf="@+id/cot1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hang2">
+
+        <ImageView
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:id="@+id/imageView3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/icon_window_edge" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edge" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/bg_trangduc"
+        app:layout_constraintBottom_toTopOf="@+id/hang3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cot1"
+        app:layout_constraintTop_toBottomOf="@id/hang2">
+
+        <LinearLayout
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Web" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/icon_window_thoitiet" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31°C" />
+
+            <View
+                android:background="@color/white"
+                android:layout_width="30dp"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22°F" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thu" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/icon_window_thoitiet" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31°C" />
+
+            <View
+                android:background="@color/white"
+                android:layout_width="30dp"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22°F" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fri" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/icon_window_thoitiet" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="28°C" />
+
+            <View
+                android:background="@color/white"
+                android:layout_width="30dp"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21°F" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sat" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/icon_window_thoitiet" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31°C" />
+
+            <View
+                android:background="@color/white"
+                android:layout_width="30dp"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22°F" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sun" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/icon_window_thoitiet" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31°C" />
+
+            <View
+                android:background="@color/white"
+                android:layout_width="30dp"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txtThoiTiet53"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22°F" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/teal_700"
+        app:layout_constraintBottom_toTopOf="@+id/hang4"
+        app:layout_constraintEnd_toStartOf="@+id/cot1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hang3">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:id="@+id/imageView9"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/icon_window_anh" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt41"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Image" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/bg_trangduc"
+        app:layout_constraintBottom_toTopOf="@+id/hang4"
+        app:layout_constraintEnd_toStartOf="@+id/cot2"
+        app:layout_constraintStart_toStartOf="@id/cot1"
+        app:layout_constraintTop_toBottomOf="@id/hang3">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:id="@+id/imageView10"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/icon_window_cart" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt42"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Store" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:padding="10dp"
+        android:src="@drawable/icon_window_word"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="#0477D3"
+        app:layout_constraintBottom_toTopOf="@+id/hangcon43"
+        app:layout_constraintEnd_toStartOf="@+id/cotcon34"
+        app:layout_constraintStart_toStartOf="@id/cot2"
+        app:layout_constraintTop_toTopOf="@id/hang3" />
+
+    <ImageView
+        android:padding="10dp"
+        android:src="@drawable/icon_window_powerpoint"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+        android:background="#FF5722"
+        app:layout_constraintBottom_toTopOf="@+id/hangcon43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cotcon34"
+        app:layout_constraintTop_toTopOf="@id/hang3" />
+
+    <ImageView
+        android:padding="10dp"
+        android:src="@drawable/icon_window_excel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="#4CAF50"
+        app:layout_constraintBottom_toTopOf="@+id/hang4"
+        app:layout_constraintEnd_toStartOf="@+id/cotcon34"
+        app:layout_constraintStart_toStartOf="@id/cot2"
+        app:layout_constraintTop_toTopOf="@id/hangcon43" />
+
+    <ImageView
+        android:src="@drawable/icon_window_outlook"
+        android:padding="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+        android:background="#2196F3"
+        app:layout_constraintBottom_toTopOf="@+id/hang4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cotcon34"
+        app:layout_constraintTop_toTopOf="@id/hangcon43" />
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/bg_trangduc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cot2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hang4">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:id="@+id/imageView11"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/icon_window_headphone"/>
+
+        <TextView
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt51"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Music + Videos" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cot2"
+        app:layout_constraintTop_toBottomOf="@id/hang4">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:id="@+id/imageView12"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/icon_window_setting_phone" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt52"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Setting" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
