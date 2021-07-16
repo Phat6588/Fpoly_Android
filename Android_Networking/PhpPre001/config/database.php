@@ -19,4 +19,19 @@
         }
         // php -S 127.0.0.1:8081
     }  
+
+    // lab 1, 
+    // lab 2: tinh tien taxi
+
+
+
+
+    // lab 3: dùng volley, retrofit
+    // màn hình 1: sử dụng get(), hiển thị danh sách (list view recycler)
+    // màn hình 2: sử dụng post(), hiển thị chi tiết sinh viên, 
+    // có điểm trung bình, kết quả (form, nhấn nút submit, server trả về)
+
+
+
+
 ?>

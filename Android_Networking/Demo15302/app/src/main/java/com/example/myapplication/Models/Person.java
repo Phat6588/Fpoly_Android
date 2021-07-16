@@ -1,7 +1,9 @@
 package com.example.myapplication.Models;
 
+
 public class Person {
-    private String id, name;
+    private String id;
+    private String name;
 
     public Person() {
     }
