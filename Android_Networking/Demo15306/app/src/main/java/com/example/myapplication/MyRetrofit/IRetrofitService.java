@@ -1,5 +1,6 @@
 package com.example.myapplication.MyRetrofit;
 
+import com.example.myapplication.Model.AccessToken;
 import com.example.myapplication.Model.Person;
 import com.example.myapplication.Model.Student;
 import com.example.myapplication.Model.ThaThinh;
@@ -22,4 +23,10 @@ public interface IRetrofitService {
 
     @POST("thaThinh.php")
     Call<ThaThinh> thaThinh(@Body ThaThinh tt);
+
+    @POST("login.php")
+    Call<AccessToken> login(@Body Person person);
+
+    @POST("getProfile.php")
+    Call<Person> getProfile();
 }

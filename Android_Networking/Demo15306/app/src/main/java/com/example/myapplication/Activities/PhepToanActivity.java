@@ -17,6 +17,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.myapplication.BackgroundTask.DatabaseBackgroundTask;
+import com.example.myapplication.Model.AccessToken;
+import com.example.myapplication.Model.AccessTokenManager;
 import com.example.myapplication.Model.Person;
 import com.example.myapplication.Model.Student;
 import com.example.myapplication.Model.ThaThinh;
@@ -34,7 +36,7 @@ import java.util.Random;
 public class PhepToanActivity extends AppCompatActivity {
 
     private TextView textView3;
-    private Button button3;
+    private Button button3, button4;
     private EditText editText1, editText2;
 
     private String url = "http://10.0.2.2:8081/api/test.php";
@@ -42,6 +44,7 @@ public class PhepToanActivity extends AppCompatActivity {
 
 
     private IRetrofitService service;
+    private AccessTokenManager tokenManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +52,25 @@ public class PhepToanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phep_toan);
 
         service = RetrofitBuilder.createService(IRetrofitService.class);
+        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
         textView3 = (TextView) findViewById(R.id.textView3);
         button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
         editText1 = (EditText) findViewById(R.id.editTextNumber1);
         editText2 = (EditText) findViewById(R.id.editTextNumber2);
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ten = editText1.getText().toString();
-                String luong = editText2.getText().toString();
+                String username = editText1.getText().toString();
+                String password = editText2.getText().toString();
+
+                service.login(new Person("", "", username, password))
+                        .enqueue(loginCallback);
+
+
+
                 // Person p = new Person(id, name);
                 // postToServerByVolley(p);
                 // getFromServerByVolley();
@@ -70,11 +81,18 @@ public class PhepToanActivity extends AppCompatActivity {
                 // service.getArray().enqueue(getArrayCallback);
 
                 // service.postPerson(new Student(ten, Double.parseDouble(luong), 0.0));
-                Random r = new Random();
-                int low = 1;
-                int high = 7;
-                int number = r.nextInt(high-low) + low;
-                service.thaThinh(new ThaThinh(number, null)).enqueue(postThaThinhCallback);
+                // Random r = new Random();
+                // int low = 1;
+                // int high = 7;
+                // int number = r.nextInt(high-low) + low;
+                // service.thaThinh(new ThaThinh(number, null)).enqueue(postThaThinhCallback);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                service.getProfile().enqueue(getProfileCallback);
             }
         });
     }
@@ -175,6 +193,36 @@ public class PhepToanActivity extends AppCompatActivity {
 
 
     // start using Retrofit
+
+    Callback<Person> getProfileCallback = new Callback<Person>() {
+        @Override
+        public void onResponse(Call<Person> call, retrofit2.Response<Person> response) {
+            if (response.isSuccessful()){
+                Person person = response.body();
+                textView3.setText(person.getName());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Person> call, Throwable t) {
+        }
+    };
+
+    Callback<AccessToken> loginCallback = new Callback<AccessToken>() {
+        @Override
+        public void onResponse(Call<AccessToken> call, retrofit2.Response<AccessToken> response) {
+            if (response.isSuccessful()){
+//                AccessToken token = response.body();
+//                tokenManager.saveToken(token);
+            }
+        }
+
+        @Override
+        public void onFailure(Call<AccessToken> call, Throwable t) {
+        }
+    };
+
+
     Callback<Person> getOneCallback = new Callback<Person>() {
         @Override
         public void onResponse(Call<Person> call, retrofit2.Response<Person> response) {
