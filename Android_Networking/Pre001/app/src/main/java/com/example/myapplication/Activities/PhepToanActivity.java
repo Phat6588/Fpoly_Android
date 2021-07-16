@@ -43,7 +43,7 @@ public class PhepToanActivity extends AppCompatActivity
         Loader.OnLoadCompleteListener<String> {
 
     private TextView textView3;
-    private Button button3;
+    private Button button3, button4;
     private EditText number1, number2, number3;
 
     private String url = "http://10.0.2.2:8081/api/test.php";
@@ -69,6 +69,7 @@ public class PhepToanActivity extends AppCompatActivity
 
         textView3 = (TextView) findViewById(R.id.textView3);
         button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
         number1 = (EditText) findViewById(R.id.editTextNumber1);
         number2 = (EditText) findViewById(R.id.editTextNumber2);
         number3 = (EditText) findViewById(R.id.editTextNumber3);
@@ -115,8 +116,15 @@ public class PhepToanActivity extends AppCompatActivity
                 // retrofit dung enqueue
                 // interfaceRetrofitAPI.get().enqueue(getStudentCB);
                 // interfaceRetrofitAPI.post(new Student("1", "nguyễn nam")).enqueue(postCB);
-                interfaceRetrofitAPI.getOne().enqueue(getOneStudentCB);
+//                interfaceRetrofitAPI.getOne().enqueue(getOneStudentCB);
                 interfaceRetrofitAPI.login(new Student(null, null, "123", "123")).enqueue(loginCB);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                interfaceRetrofitAPI.profile().enqueue(profileCB);
             }
         });
     }
@@ -315,7 +323,6 @@ public class PhepToanActivity extends AppCompatActivity
         @Override
         public void onResponse(Call<AccessToken> call, retrofit2.Response<AccessToken> response) {
             if (response.isSuccessful()) {
-                AccessToken token = response.body();
                 tokenManager.saveToken(response.body());
             } else {
                 Log.e("Result", "Put Response Code :: >>>>" + response.message());
@@ -323,6 +330,19 @@ public class PhepToanActivity extends AppCompatActivity
         }
         @Override
         public void onFailure(Call<AccessToken> call, Throwable t) {}
+    };
+
+    Callback<Student> profileCB = new Callback<Student>() {
+        @Override
+        public void onResponse(Call<Student> call, retrofit2.Response<Student> response) {
+            if (response.isSuccessful()) {
+                Log.e("Result", "profileCB :: >>>>" + response.body().getName());
+            } else {
+                Log.e("Result", "Put Response Code :: >>>>" + response.message());
+            }
+        }
+        @Override
+        public void onFailure(Call<Student> call, Throwable t) {}
     };
 
 

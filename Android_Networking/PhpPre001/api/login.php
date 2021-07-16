@@ -40,8 +40,7 @@ if ($check) {
     $jwt = JWT::encode($token, $key);
     echo json_encode(
         array(
-            "message" => "Successful login.",
-            "jwt" => $jwt
+            "accessToken" => $jwt
         )
     );
 } else {

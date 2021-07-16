@@ -22,6 +22,9 @@ public interface InterfaceRetrofitAPI {
     @POST("login.php/")
     Call<AccessToken> login(@Body Student student);
 
+    @POST("getProfile.php/")
+    Call<Student> profile();
+
 //    @GET("/repos/{owner}/{repo}/issues")
 //    Single<List<GithubIssue>> getIssues(@Path("owner") String owner, @Path("repo") String repository);
 
