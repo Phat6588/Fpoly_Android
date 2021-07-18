@@ -1,9 +1,12 @@
 package com.example.myapplication.DAO;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 
 import com.example.myapplication.Model.AccessToken;
+import com.example.myapplication.Model.ImageSaved;
 import com.example.myapplication.Model.Student;
 
 import java.util.List;
@@ -30,4 +33,8 @@ public interface InterfaceRetrofitAPI {
 
 //    @POST("api/test.php/")
 //    Call<Void> postComment(@Url String url, @Body GithubIssue issue);
+
+    @Multipart
+    @POST("/")
+    Call<ImageSaved> upload(@Part MultipartBody.Part image);
 }

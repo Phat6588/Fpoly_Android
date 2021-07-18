@@ -1,5 +1,6 @@
 package com.example.myapplication.MyRetrofit;
 
+import com.example.myapplication.Models.AccessToken;
 import com.example.myapplication.Models.Person;
 
 import java.util.List;
@@ -20,4 +21,7 @@ public interface IRetrofitService {
 
     @POST("post.php")
     Call<Person> post();
+
+    @POST("login.php")
+    Call<AccessToken> login(@Body Person person);
 }

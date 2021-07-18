@@ -17,13 +17,13 @@
             }
             return $this->conn;
         }
-        // php -S 127.0.0.1:8081
+        
     }  
 
     // lab 1, 
     // lab 2: tinh tien taxi
 
-
+    // php -S 127.0.0.1:8081
 
 
     // lab 3: dùng volley, retrofit

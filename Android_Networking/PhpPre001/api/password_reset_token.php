@@ -17,7 +17,7 @@ if ($data->email) {
 
     $expDate = date("Y-m-d H:i:s", $expFormat);
 
-    $link = "<a href='http://127.0.0.1:8081/reset-password.php?key=" . $emailId . "&token=" . $token . "'>Click To Reset password</a>";
+    $link = "<a href='http://127.0.0.1:8081/reset_password.php?key=" . $emailId . "&token=" . $token . "'>Click To Reset password</a>";
 
     require("../libs/PHPMailer-master/src/PHPMailer.php");
     require("../libs/PHPMailer-master/src/SMTP.php");

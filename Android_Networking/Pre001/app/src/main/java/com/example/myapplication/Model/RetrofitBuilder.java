@@ -17,29 +17,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitBuilder {
 
-    private static final String BASE_URL = "http://10.0.2.2:8081/api/";
+//    private static final String BASE_URL = "http://10.0.2.2:8081/api/";
+    private static final String BASE_URL = "https://2.pik.vn/";
     private final static Retrofit retrofit = buildRetrofit();
 
     private static Retrofit buildRetrofit() {
         // Define the interceptor, add authentication headers
-        Interceptor interceptor = new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                String accessToken = TokenManager.getInstance(null).getToken().getAccessToken();
-                Request newRequest = chain.request().newBuilder().addHeader("Authorization", "Bearer " + accessToken).build();
-                return chain.proceed(newRequest);
-            }
-        };
+//        Interceptor interceptor = new Interceptor() {
+//            @Override
+//            public okhttp3.Response intercept(Chain chain) throws IOException {
+//                String accessToken = TokenManager.getInstance(null).getToken().getAccessToken();
+//                Request newRequest = chain.request().newBuilder().addHeader("Authorization", "Bearer " + accessToken).build();
+//                return chain.proceed(newRequest);
+//            }
+//        };
 
         // Add the interceptor to OkHttpClient
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.interceptors().add(interceptor);
-        OkHttpClient client = builder.build();
+//        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+//        builder.interceptors().add(interceptor);
+//        OkHttpClient client = builder.build();
 
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
+//                .client(client)
                 .build();
     }
 

@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.Models.AccessToken;
+import com.example.myapplication.Models.AccessTokenManager;
 import com.example.myapplication.Models.Person;
 import com.example.myapplication.MyRetrofit.IRetrofitService;
 import com.example.myapplication.MyRetrofit.RetrofitBuilder;
@@ -21,9 +23,10 @@ import java.util.List;
 public class PersonActivity extends AppCompatActivity {
 
     private IRetrofitService service;
+    private AccessTokenManager tokenManager;
 
     private TextView myTextView;
-    private Button myButton;
+    private Button myButton, button11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +34,46 @@ public class PersonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_person);
 
         service = RetrofitBuilder.createService(IRetrofitService.class);
+        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
         myTextView = (TextView) findViewById(R.id.myTextView);
         myButton = (Button) findViewById(R.id.myButton);
+        button11 = (Button) findViewById(R.id.button11);
 
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // service.getOne().enqueue(getOneCallback);
                 // service.getArray().enqueue(getArrayCallback);
-                service.getOneByParam(1).enqueue(getOneCallback);
+                // service.getOneByParam(1).enqueue(getOneCallback);
+                service.login(new Person("admin", "123")).enqueue(loginCallback);
+            }
+        });
+
+        button11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                service.getOne().enqueue(getOneCallback);
             }
         });
     }
+
+    Callback<AccessToken> loginCallback = new Callback<AccessToken>() {
+        @Override
+        public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
+            if (response.isSuccessful()){
+                AccessToken p = response.body();
+                myTextView.setText(p.getAccess_token());
+                tokenManager.saveToken(p);
+            } else {
+            }
+        }
+
+        @Override
+        public void onFailure(Call<AccessToken> call, Throwable t) {
+            Log.e(">>>>>", t.getMessage());
+        }
+    };
 
     Callback<List<Person>> getArrayCallback = new Callback<List<Person>>() {
         @Override
