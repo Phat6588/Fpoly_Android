@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class FristFragment  extends Fragment {
+public class ThirdFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_first_fragment,
+        return inflater.inflate(R.layout.layout_third_fragment,
                 container, false);
     }
 

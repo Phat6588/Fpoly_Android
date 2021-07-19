@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentActivity">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <fragment
+        android:id="@+id/myFragment"
+        android:name="com.example.myapplication.ThirdFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+
+    <FrameLayout
+        android:id="@+id/my_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        ></FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:id="@+id/textFrgment"
+        />
+
+    <Button
+        android:id="@+id/btnFragment1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragment 1"/>
+    <Button
+        android:id="@+id/btnFragment2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragment 2"/>
+    <Button
+        android:id="@+id/btnFragment3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragment 3"/>
+
+</LinearLayout>
