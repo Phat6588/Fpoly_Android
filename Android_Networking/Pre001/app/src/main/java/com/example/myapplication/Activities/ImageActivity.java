@@ -7,7 +7,6 @@ import retrofit2.Callback;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -17,20 +16,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.DAO.InterfaceRetrofitAPI;
 import com.example.myapplication.Model.ImageSaved;
 import com.example.myapplication.Model.RetrofitBuilder;
-import com.example.myapplication.Model.Student;
 import com.example.myapplication.R;
 
-import org.w3c.dom.Text;
-
 import java.io.ByteArrayOutputStream;
-import java.util.List;
 
 public class ImageActivity extends AppCompatActivity {
 
-    ImageView imageView;
+    ImageView imageView, imageView3;
     Button button5;
     TextView textView;
     Bitmap bitmapImg;
@@ -42,6 +38,7 @@ public class ImageActivity extends AppCompatActivity {
         setContentView(R.layout.layout_image);
         interfaceRetrofitAPI = RetrofitBuilder.createService(InterfaceRetrofitAPI.class);
         imageView = (ImageView) findViewById(R.id.imageView2);
+        imageView3 = (ImageView) findViewById(R.id.imageView3);
         button5 = (Button) findViewById(R.id.button5);
         textView = (TextView) findViewById(R.id.textView4);
 
@@ -95,6 +92,9 @@ public class ImageActivity extends AppCompatActivity {
             if (response.isSuccessful()) {
                 ImageSaved imageSaved = response.body();
                 textView.setText(imageSaved.getSaved());
+                Glide.with(ImageActivity.this)
+                        .load("https://2.pik.vn/" + imageSaved.getSaved())
+                        .into(imageView3);
             } else {
                 Log.e("Result", "Put Response Code :: >>>>" + response.message());
             }
