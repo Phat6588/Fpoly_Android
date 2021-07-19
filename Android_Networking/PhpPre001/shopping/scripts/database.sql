@@ -8,8 +8,7 @@ USE `Shopping`;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 
 CREATE TABLE IF NOT EXISTS `tblUsers` (
-  `id` int(11) NOT NULL auto_increment PRIMARY KEY,   
-  `username` int(11) NOT NULL default '0',       
+  `id` int(11) NOT NULL auto_increment PRIMARY KEY,      
   `hash_password` varchar(60)  NOT NULL,
   `email` varchar(255)  NOT NULL UNIQUE
 );
@@ -17,7 +16,9 @@ CREATE TABLE IF NOT EXISTS `tblUsers` (
 CREATE TABLE IF NOT EXISTS `tblPasswordResets` (
   `id` int(11) NOT NULL auto_increment PRIMARY KEY,   
   `email` varchar(255)  NOT NULL,   
-  `token` varchar(255)  NOT NULL UNIQUE 
+  `token` varchar(255)  NOT NULL UNIQUE ,
+  `created` DATETIME not null DEFAULT now(),
+  `available` bit not null DEFAULT 1
 );
 
 -- can phai co bien thoi gian tao created, bien da dung available
@@ -38,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `tblProducts` (
    FOREIGN KEY(`category_id`) REFERENCES tblCategories(`id`)
 );
 
-INSERT INTO `tblUsers` (`username`, `hash_password`, `email`) VALUES('admin', '$2y$10$fFbvDy8znBjYM9qRCbg/YeBYTXK4WpSUvbQrI3kPhX73kFeFCKX6G', 'abc@gmail.com')
-INSERT INTO `tblCategories`(`name`) VALUES ('Mobile'), ('Laptop')
+INSERT INTO `tblUsers` (`hash_password`, `email`) VALUES('$2y$10$fFbvDy8znBjYM9qRCbg/YeBYTXK4WpSUvbQrI3kPhX73kFeFCKX6G', 'channn3@fpt.edu.vn');
+INSERT INTO `tblCategories`(`name`) VALUES ('Mobile'), ('Laptop');
 
 -- drop database Shopping
 -- php -S 127.0.0.1:8081

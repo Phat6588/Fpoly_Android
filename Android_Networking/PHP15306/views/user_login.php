@@ -1,42 +1,40 @@
-<?php
+<?php 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+$data = json_decode(file_get_contents("php://input"));
 
 include_once '../controllers/user_controller.php';
 
-$data = json_decode(file_get_contents("php://input"));
-
-if ($data->username && $data->password) {
-   $access_token = (new UserController())->login($data->username, $data->password);   
-   if($access_token){
+if ($data->email && $data->password) {
+    $status = (new UserController())->login($data->email, $data->password);
+    if ($status) {
         http_response_code(200);
         echo json_encode(
             array(
-                "access_token" => $access_token,
-                "is_auth" => true
+                "status" => true,
+                "message" => "Login success"
             )
-        );
-   }
-   else {
+        ); 
+    } else {
         http_response_code(401);
         echo json_encode(
             array(
-                "access_token" => null,
-                "is_auth" => false
+                "status" => false,
+                "message" => "Login failed"
             )
         );
-   }
+    }
 }
 else {
     http_response_code(401);
     echo json_encode(
         array(
-            "access_token" => null,
-            "is_auth" => false
+            "status" => false,
+            "message" => "Login failed"
         )
-    );
+    );   
 }
 ?>
