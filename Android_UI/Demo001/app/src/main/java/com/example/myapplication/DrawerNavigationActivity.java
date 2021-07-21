@@ -60,7 +60,7 @@ public class DrawerNavigationActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected( MenuItem item) {
                 selectDrawerItem(item);
-                return false;
+                return true;
             }
         });
     }
