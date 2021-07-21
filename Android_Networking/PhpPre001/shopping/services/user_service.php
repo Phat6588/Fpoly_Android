@@ -73,22 +73,23 @@
             return null;
         }
 
-        public function getByToken($token)
+        public function getByToken($token, $email)
         {
+            // chua xong
             try {
-                $sqlQuery = "SELECT email, created, available FROM " . $this->db_tableReset . " WHERE token = ? LIMIT 0,1";
+                $sqlQuery = "SELECT * FROM " . $this->db_tableReset . " WHERE token = ? and email =? and available = 1
+                                                                     and created  > NOW() - INTERVAL 30 MINUTE LIMIT 0,1";
                 $stmt = $this->conn->prepare($sqlQuery);
                 $stmt->bindParam(1, $token);
+                $stmt->bindParam(2, $email);
                 $stmt->execute();
-                if ($stmt->rowCount()>0) {
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);  
-                    extract($row); 
-                    return new Reset( $email, $created,$available);
+                if ($stmt->rowCount()>0) {                    
+                    return true;
                 }    
-                return null;            
+                return false;            
             } catch (Exception $e) {           
             }
-            return null;
+            return false;
         }
 
         public function changePassword($email, $hash_password)
@@ -124,11 +125,10 @@
                 $sqlQuery = "UPDATE
                             ". $this->db_tableReset ."
                                 SET
-                                available = :available WHERE token = :token";
+                                available = 0 WHERE token = :token";
                 $stmt = $this->conn->prepare($sqlQuery);
             
                 // bind data
-                $stmt->bindParam(":available", 0);
                 $stmt->bindParam(":token", $token);
             
                 $this->conn->beginTransaction();

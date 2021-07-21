@@ -34,19 +34,24 @@
             return null;
         }
 
+        public function getByToken($token, $email)
+        {
+            $service = new UserService();            
+            return $service->getByToken($token, $email);
+        }
 
         // change password
-        public function updatePassword($email, $token)
-        {
-            
+        public function updatePasswordAndToken($email, $token, $password)
+        {            
             $service = new UserService();
-            $reset_token = $service->getByToken($token);
-            if ($reset_token) {
-               $_email = $reset_token->getEmail();
-               $_created = $reset_token->getCreated();
-               $_available = $reset_token->getAvailable();
-               // so sanh ngay thang, avai, created
-               // neu dc thi cap nhat 2 bang
+            $reset_token = $service->getByToken($token, $email);
+            if ($reset_token) {               
+               // di cap nhat trong db 2 bang                           
+                $clear_token = $service->clearToken($token);
+                if ($clear_token) {
+                    $hash_password = password_hash($password, PASSWORD_BCRYPT);     
+                    return $service->changePassword($email,$hash_password);
+                }                
             }
             return false;
         }
@@ -71,7 +76,7 @@
 
         private function sendEmail($email, $token)
         {
-            $link = "<a href='http://127.0.0.1:8081/user_change_password.php?key=" . $email . "&token=" . $token . "'>Click To Reset password</a>";
+            $link = "<a href='http://127.0.0.1:8081/shopping/views/user_reset_password_form.php?key=" . $email . "&token=" . $token . "'>Click To Reset password</a>";
             $mail = new PHPMailer\PHPMailer\PHPMailer();
 
             $mail->CharSet =  "utf-8";

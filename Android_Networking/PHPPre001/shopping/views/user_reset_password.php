@@ -5,40 +5,42 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$data = json_decode(file_get_contents("php://input"));
-
 include_once '../controllers/user_controller.php';
 
-if ($data->email) {
-    $status = (new UserController())->sendEmailResetLink($data->email);
-    if ($status) {
+
+$email = $_POST['email'];
+$token = $_POST['token'];
+$password = $_POST['password'];
+$confirm_password = $_POST['confirm_password'];
+
+if ($email && $token && $password == $confirm_password) {
+   $status = (new UserController())->updatePasswordAndToken($email, $token, $password);   
+   if($status){
         http_response_code(200);
         echo json_encode(
             array(
-                "message" => "Check email",
-                "status" => true
+                "status" => true,
+                "message" => "Success"
             )
         );
-    }
-    else {
-        http_response_code(404);
+   }
+   else {
+        http_response_code(401);
         echo json_encode(
             array(
-                "message" => "Email invalid",
-                "status" => false
+                "status" => false,
+                "message" => "Failed"
             )
         );
-    }
+   }
 }
 else {
-    http_response_code(404);
+    http_response_code(401);
     echo json_encode(
         array(
-            "message" => "Email invalid",
-            "status" => false
+            "status" => false,
+            "message" => "Failed"
         )
     );
 }
-
-
 ?>
