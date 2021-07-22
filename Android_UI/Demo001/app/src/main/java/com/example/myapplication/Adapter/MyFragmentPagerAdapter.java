@@ -9,21 +9,20 @@ import com.example.myapplication.ThirdFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class MyFragmentPagerAdapter extends FragmentStateAdapter {
-    final int TAB_COUNT = 9;
-    private String[] titles = new String[]{"Khoan thu", "Khoan chi", "Thong ke", "Khoan thu", "Khoan chi", "Thong ke", "Khoan thu", "Khoan chi", "Thong ke"};
+public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+    final int TAB_COUNT = 3;
+    private String[] titles = new String[]{"Khoan thu", "Khoan chi", "Thong ke"};
     private Context ctx;
 
-    public MyFragmentPagerAdapter(FragmentActivity fa){
-        super(fa);
+    public MyFragmentPagerAdapter(FragmentManager fragmentManager, Context context){
+        super(fragmentManager);
+        ctx = context;
     }
     @Override
-    public Fragment createFragment(int position) {
+    public Fragment getItem(int position) {
         Fragment fragment = null;
         Class fragmentClass = null;
         switch (position){
@@ -31,13 +30,10 @@ public class MyFragmentPagerAdapter extends FragmentStateAdapter {
                 fragmentClass = ThirdFragment.class;
                 break;
             case 1:
-                fragmentClass = FifthFragment.class;
+                fragmentClass = FourthFragment.class;
                 break;
             case 2:
                 fragmentClass = FifthFragment.class;
-                break;
-            default:
-                fragmentClass = ThirdFragment.class;
                 break;
         }
         try {
@@ -47,8 +43,12 @@ public class MyFragmentPagerAdapter extends FragmentStateAdapter {
     }
 
     @Override
-    public int getItemCount() {
+    public int getCount() {
         return TAB_COUNT;
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
+    }
 }

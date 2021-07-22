@@ -40,13 +40,13 @@ public class FirstFragment extends Fragment {
     @Override
     public void onViewCreated( View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        textViewFrg1 = view.findViewById(R.id.textViewFrg1);
-//        textViewFrg1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                listener.onTextViewClick("Hey hello!!!!");
-//            }
-//        });
+        textViewFrg1 = view.findViewById(R.id.textViewFrg1);
+        textViewFrg1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onTextViewClick("Hey hello!!!!");
+            }
+        });
     }
 
     @Override

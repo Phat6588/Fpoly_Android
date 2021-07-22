@@ -15,12 +15,12 @@ public class TabsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs);
 
-//        ViewPager viewPager = (ViewPager) findViewById(R.id.my_view_pager);
-//        viewPager.setAdapter(
-//                new MyFragmentPagerAdapter(getSupportFragmentManager(),
-//                        TabsActivity.this)
-//                );
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.my_tabs);
-//        tabLayout.setupWithViewPager(viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.my_view_pager);
+        viewPager.setAdapter(
+                new MyFragmentPagerAdapter(getSupportFragmentManager(),
+                        TabsActivity.this)
+                );
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.my_tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
