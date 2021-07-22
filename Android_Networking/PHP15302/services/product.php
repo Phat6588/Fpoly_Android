@@ -1,12 +1,12 @@
 <?php
     include_once '../configs/database_config.php';
-    include_once '../models/user.php';
+    include_once '../models/product.php';
 
 
-    class UserService {
+    class ProductService {
         private $connection;
-        private $tblUsers = "tblUsers";
-        private $tblPasswordResets = "tblPasswordResets";
+        private $tblCategories = "tblCategories";
+        private $tblProducts = "tblProducts";
 
         public function __construct()
         {
