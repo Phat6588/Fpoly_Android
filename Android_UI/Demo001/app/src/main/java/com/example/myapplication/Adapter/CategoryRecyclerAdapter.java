@@ -21,6 +21,12 @@ public class CategoryRecyclerAdapter extends
         data = _data;
     }
 
+    public void updateData (List<Category> _data){
+        data.clear();
+        data.addAll(_data);
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())

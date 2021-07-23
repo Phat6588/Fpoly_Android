@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.myapplication.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +17,6 @@ public class FirstFragment extends Fragment {
 
     public interface OnTextViewClickListener{
         public void onTextViewClick(String text);
-
     }
 
     private OnTextViewClickListener listener;

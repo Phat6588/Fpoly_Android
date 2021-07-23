@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +21,7 @@ import com.example.myapplication.Adapter.CategoryAdapter;
 import com.example.myapplication.Adapter.CategoryRecyclerAdapter;
 import com.example.myapplication.DAO.CategoryDAO;
 import com.example.myapplication.Models.Category;
+import com.example.myapplication.R;
 
 import java.util.List;
 

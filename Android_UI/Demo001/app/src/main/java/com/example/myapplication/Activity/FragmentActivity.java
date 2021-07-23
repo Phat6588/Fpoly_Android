@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.myapplication.Fragment.FirstFragment;
+import com.example.myapplication.Fragment.SecondFragment;
+import com.example.myapplication.Fragment.ThirdFragment;
+import com.example.myapplication.R;
 
 public class FragmentActivity extends AppCompatActivity
         implements FirstFragment.OnTextViewClickListener{

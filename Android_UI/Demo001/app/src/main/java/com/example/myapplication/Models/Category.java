@@ -1,5 +1,7 @@
 package com.example.myapplication.Models;
 
+import java.io.Serializable;
+
 public class Category {
     private int id;
     private String name;

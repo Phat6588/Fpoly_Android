@@ -9,20 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".TabsActivity">
+        <activity android:name=".Activity.TabsActivity">
+
+        </activity>
+        <activity android:name=".Activity.DrawerNavigationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DrawerNavigationActivity">
-
-        </activity>
-        <activity android:name=".BottomNavigationActivity"></activity>
-        <activity android:name=".FragmentActivity" />
-        <activity android:name=".LinearActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activity.BottomNavigationActivity"></activity>
+        <activity android:name=".Activity.FragmentActivity" />
+        <activity android:name=".Activity.LinearActivity" />
+        <activity android:name=".Activity.MainActivity" />
     </application>
 
 </manifest>

@@ -1,13 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -16,7 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+import com.example.myapplication.Fragment.FifthFragment;
+import com.example.myapplication.Fragment.FourthFragment;
+import com.example.myapplication.Fragment.ThirdFragment;
+import com.example.myapplication.Models.Category;
+import com.example.myapplication.R;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class DrawerNavigationActivity extends AppCompatActivity {
 

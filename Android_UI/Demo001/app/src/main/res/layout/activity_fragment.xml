@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/myFragment"
-        android:name="com.example.myapplication.ThirdFragment"
+        android:name="com.example.myapplication.Fragment.ThirdFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
