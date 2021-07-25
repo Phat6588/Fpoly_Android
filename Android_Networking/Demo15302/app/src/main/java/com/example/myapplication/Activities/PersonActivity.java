@@ -33,7 +33,7 @@ public class PersonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
 
-        service = RetrofitBuilder.createService(IRetrofitService.class);
+//        service = RetrofitBuilder.createService(IRetrofitService.class);
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
         myTextView = (TextView) findViewById(R.id.myTextView);
@@ -46,7 +46,7 @@ public class PersonActivity extends AppCompatActivity {
                 // service.getOne().enqueue(getOneCallback);
                 // service.getArray().enqueue(getArrayCallback);
                 // service.getOneByParam(1).enqueue(getOneCallback);
-                service.login(new Person("admin", "123")).enqueue(loginCallback);
+//                service.login(new Person("admin", "123")).enqueue(loginCallback);
             }
         });
 
@@ -79,12 +79,12 @@ public class PersonActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<List<Person>> call, Response<List<Person>> response) {
             if (response.isSuccessful()){
-                List<Person> list = response.body();
-                String s = "";
-                for (int i = 0; i < list.size(); i++){
-                    s+= list.get(i).getName() + " ";
-                }
-                myTextView.setText(s);
+//                List<Person> list = response.body();
+//                String s = "";
+//                for (int i = 0; i < list.size(); i++){
+//                    s+= list.get(i).getName() + " ";
+//                }
+//                myTextView.setText(s);
             } else {
             }
         }
@@ -97,8 +97,8 @@ public class PersonActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<Person> call, Response<Person> response) {
             if (response.isSuccessful()){
-                Person p = response.body();
-                myTextView.setText(p.getName());
+//                Person p = response.body();
+//                myTextView.setText(p.getName());
             } else {
             }
         }

@@ -10,18 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.PersonActivity">
-
+        <activity android:name=".Activities.ProductActivity"></activity>
+        <activity android:name=".Activities.IndexActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.TestActivity">
+        <activity android:name=".Activities.PersonActivity">
 
         </activity>
-        <activity android:name=".DemoAsyncTaskActivity"></activity>
+        <activity android:name=".Activities.TestActivity" />
+        <activity android:name=".DemoAsyncTaskActivity" />
         <activity android:name=".ThreadActivity" />
         <activity android:name=".HandlerActivity" />
         <activity android:name=".MainActivity" />

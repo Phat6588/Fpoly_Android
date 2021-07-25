@@ -37,3 +37,14 @@ INSERT INTO `tblUsers` (`hash_password`, `email`) VALUES ('$2y$10$/hWiMdB10Aw8bY
 
 INSERT INTO `tblCategories`(`category_name`) VALUES ('Laptop'), ('Mobile'), ('Desktop'), ('Accessories'), ('Tablet');
 
+ insert into tblproducts (product_name, price, image_url, category_id) 
+ values ('San pham 1', 100, 'http://placeimg.com/640/480/business', 1 ), 
+ ('San pham 2', 100, 'http://placeimg.com/640/480/business', 1 ), 
+ ('San pham 3', 100, 'http://placeimg.com/640/480/business', 1 ),
+  ('San pham 4', 100, 'http://placeimg.com/640/480/business', 1 ), 
+  ('San pham 5', 100, 'http://placeimg.com/640/480/business', 1 ),
+   ('San pham 6', 100, 'http://placeimg.com/640/480/business', 1 ), 
+   ('San pham 7', 100, 'http://placeimg.com/640/480/business', 1 ), 
+   ('San pham 8', 100, 'http://placeimg.com/640/480/business', 1 ), 
+   ('San pham 9', 100, 'http://placeimg.com/640/480/business', 1 ), 
+   ('San pham 10', 100, 'http://placeimg.com/640/480/business', 1 );

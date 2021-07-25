@@ -9,7 +9,7 @@ public class AccessTokenManager {
     private static AccessTokenManager instance = null;
     private AccessTokenManager(SharedPreferences _prefs){
         this.prefs = _prefs;
-        this.editor = prefs.edit();
+        this.editor = prefs == null ? null : prefs.edit();
     }
 
     public static synchronized AccessTokenManager getInstance(SharedPreferences _prefs){
@@ -28,6 +28,6 @@ public class AccessTokenManager {
     }
 
     public AccessToken getToken(){
-        return new AccessToken(prefs.getString("ACCESS_TOKEN", null));
+        return new AccessToken(prefs.getString("ACCESS_TOKEN", null), true);
     }
 }

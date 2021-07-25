@@ -15,10 +15,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitBuilder {
-    private static final String BASE_URL = "http://10.0.2.2:8081/";
-    private static final Retrofit retrofit = buildRetrofit();
+    private String BASE_URL = "http://10.0.2.2:8081/";
 
-    private static Retrofit buildRetrofit() {
+    private Retrofit buildRetrofit() {
         Interceptor interceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
@@ -43,7 +42,8 @@ public class RetrofitBuilder {
                 .build();
     }
 
-    public static <T> T createService(Class<T> service) {
-        return retrofit.create(service);
+    public <T> T createService(Class<T> service, String url) {
+        this.BASE_URL = url;
+        return buildRetrofit().create(service);
     }
 }

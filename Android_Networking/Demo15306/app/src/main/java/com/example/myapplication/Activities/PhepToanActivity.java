@@ -51,7 +51,7 @@ public class PhepToanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phep_toan);
 
-        service = RetrofitBuilder.createService(IRetrofitService.class);
+//        service = RetrofitBuilder.createService(IRetrofitService.class);
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
         textView3 = (TextView) findViewById(R.id.textView3);
@@ -66,8 +66,8 @@ public class PhepToanActivity extends AppCompatActivity {
                 String username = editText1.getText().toString();
                 String password = editText2.getText().toString();
 
-                service.login(new Person("", "", username, password))
-                        .enqueue(loginCallback);
+//                service.login(new Person("", "", username, password))
+//                        .enqueue(loginCallback);
 
 
 
@@ -92,7 +92,7 @@ public class PhepToanActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                service.getProfile().enqueue(getProfileCallback);
+//                service.getProfile().enqueue(getProfileCallback);
             }
         });
     }
@@ -108,8 +108,8 @@ public class PhepToanActivity extends AppCompatActivity {
                         try {
                             String id = response.getString("id");
                             String name = response.getString("name");
-                            Person p = new Person(id, name);
-                            textView3.setText(p.getId() + " " + p.getName());
+//                            Person p = new Person(id, name);
+//                            textView3.setText(p.getId() + " " + p.getName());
                         }catch (Exception e){
                             Log.e(">>>Error: ", "Loi o day ne: " + e.getMessage());
                         }
@@ -129,12 +129,12 @@ public class PhepToanActivity extends AppCompatActivity {
             public byte[] getBody() {
                 try {
 
-                    JSONObject body = new JSONObject();
-                    body.put("id", person.getId());
-                    body.put("name", person.getName());
+//                    JSONObject body = new JSONObject();
+//                    body.put("id", person.getId());
+//                    body.put("name", person.getName());
 
-                    final String requestBody = body.toString();
-                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+//                    final String requestBody = body.toString();
+//                    return requestBody == null ? null : requestBody.getBytes("utf-8");
                 }catch (Exception e){
                     Log.e(">>>Error: ", "Loi o day ne: " + e.getMessage());
                 }
@@ -152,8 +152,8 @@ public class PhepToanActivity extends AppCompatActivity {
                         try {
                             String id = response.getString("id");
                             String name = response.getString("name");
-                            Person p = new Person(id, name);
-                            textView3.setText(p.getId() + " " + p.getName());
+//                            Person p = new Person(id, name);
+//                            textView3.setText(p.getId() + " " + p.getName());
                         }catch (Exception e){
                             Log.e(">>>Error: ", "Loi o day ne: " + e.getMessage());
                         }
@@ -175,8 +175,8 @@ public class PhepToanActivity extends AppCompatActivity {
                             JSONObject object = response.getJSONObject(0);
                             String id = object.getString("id");
                             String name = object.getString("name");
-                            Person p = new Person(id, name);
-                            textView3.setText(p.getId() + " " + p.getName());
+//                            Person p = new Person(id, name);
+//                            textView3.setText(p.getId() + " " + p.getName());
                         }catch (Exception e){
                             Log.e(">>>Error: ", "Loi o day ne: " + e.getMessage());
                         }
@@ -198,8 +198,8 @@ public class PhepToanActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<Person> call, retrofit2.Response<Person> response) {
             if (response.isSuccessful()){
-                Person person = response.body();
-                textView3.setText(person.getName());
+//                Person person = response.body();
+//                textView3.setText(person.getName());
             }
         }
 
@@ -227,8 +227,8 @@ public class PhepToanActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<Person> call, retrofit2.Response<Person> response) {
             if (response.isSuccessful()){
-                Person person = response.body();
-                textView3.setText(person.getName());
+//                Person person = response.body();
+//                textView3.setText(person.getName());
             }
         }
 
@@ -242,8 +242,8 @@ public class PhepToanActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<List<Person>> call, retrofit2.Response<List<Person>> response) {
             if (response.isSuccessful()){
-                List<Person> list = response.body();
-                textView3.setText(list.get(0).getName() + "  " + list.get(1).getName());
+//                List<Person> list = response.body();
+//                textView3.setText(list.get(0).getName() + "  " + list.get(1).getName());
             }
         }
 

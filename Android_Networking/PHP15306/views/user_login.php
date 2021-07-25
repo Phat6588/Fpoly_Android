@@ -19,7 +19,7 @@ if ($data->email && $data->password) {
             )
         ); 
     } else {
-        http_response_code(401);
+        http_response_code(404);
         echo json_encode(
             array(
                 "status" => false,

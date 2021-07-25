@@ -14,25 +14,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitBuilder {
-    private static final String BASE_URL = "http://10.0.2.2:8081/";
-    private static final Retrofit retrofit = buildRetrofit();
+    private String BASE_URL = "http://10.0.2.2:8081/";
+//    private Retrofit retrofit = buildRetrofit();
 
-    private static Retrofit buildRetrofit() {
-
-//        Interceptor interceptor = new Interceptor() {
-//            @Override
-//            public Response intercept(Chain chain) throws IOException {
-//                String access_token = AccessTokenManager.getInstance(null).getToken().getAccess_token();
-//                Request request = chain.request().newBuilder()
-//                        .addHeader("Authorization", "Bearer " + access_token)
-//                        .build();
-//                return chain.proceed(request);
-//            }
-//        };
-//
-//        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-//        builder.interceptors().add(interceptor);
-//        OkHttpClient client = builder.build();
+    private Retrofit buildRetrofit() {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -40,11 +25,12 @@ public class RetrofitBuilder {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-//                .client(client)
                 .build();
     }
 
-    public static <T> T createService(Class<T> service) {
-        return  retrofit.create(service);
+    // voz
+    public <T> T createService(Class<T> service, String url) {
+        BASE_URL = url;
+        return  buildRetrofit().create(service);
     }
 }

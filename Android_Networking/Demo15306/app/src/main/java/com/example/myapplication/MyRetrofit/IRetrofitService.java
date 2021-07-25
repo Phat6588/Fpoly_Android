@@ -2,31 +2,28 @@ package com.example.myapplication.MyRetrofit;
 
 import com.example.myapplication.Model.AccessToken;
 import com.example.myapplication.Model.Person;
+import com.example.myapplication.Model.Product;
+import com.example.myapplication.Model.Response2PikModel;
+import com.example.myapplication.Model.ResponseModel;
 import com.example.myapplication.Model.Student;
 import com.example.myapplication.Model.ThaThinh;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 
 public interface IRetrofitService {
 
-    @GET("getOne.php")
-    Call<Person> get();
+    @POST("views/user_login.php")
+    Call<ResponseModel> login(@Body Person person);
 
-    @GET("getArray.php")
-    Call<List<Person>> getArray();
+    @POST("views/product_get_all.php")
+    Call<List<Product>> getAllProduct();
 
-    @POST("postPerson.php")
-    Call<Student> postPerson(@Body Student student);
 
-    @POST("thaThinh.php")
-    Call<ThaThinh> thaThinh(@Body ThaThinh tt);
-
-    @POST("login.php")
-    Call<AccessToken> login(@Body Person person);
-
-    @POST("getProfile.php")
-    Call<Person> getProfile();
+    @Multipart
+    @POST("/")
+    Call<Response2PikModel> upload2pik(@Part MultipartBody.Part image);
 }

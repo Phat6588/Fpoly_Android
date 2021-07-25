@@ -1,17 +1,15 @@
-package com.example.myapplication;
+package com.example.myapplication.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
-import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.myapplication.R;
 
 import java.util.List;
 
@@ -32,8 +30,8 @@ public class LoaderActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
-        textView = (TextView) findViewById(R.id.textView);
+        button = (Button) findViewById(R.id.buttonLogin);
+//        textView = (TextView) findViewById(R.id.textView);
         this.loaderManager = LoaderManager.getInstance(this);
 
         button.setOnClickListener(new View.OnClickListener() {
