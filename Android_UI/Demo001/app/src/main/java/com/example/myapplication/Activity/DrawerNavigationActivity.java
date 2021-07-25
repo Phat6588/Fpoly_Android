@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -102,10 +103,24 @@ public class DrawerNavigationActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
         if (drawerToggle.onOptionsItemSelected(item)){
             return true;
+        } else {
+            switch (item.getItemId()){
+                case R.id.action_bar_music:
+                    Log.i(">>>>>action_bar_music", "aaaaaaaaa");
+                    break;
+                case R.id.action_bar_contact:
+                    Log.i(">>>>>action_bar_contact", "aaaabbbbbb");
+                    break;
+                case R.id.action_bar_person:
+                default:
+                    Log.i(">>>>>action_bar_person", "dddddddddd");
+                    break;
+            }
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override
