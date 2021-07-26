@@ -1,8 +1,6 @@
 package com.example.myapplication.Fragment;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +13,30 @@ import com.example.myapplication.DAO.CategoryDAO;
 import com.example.myapplication.Models.Category;
 import com.example.myapplication.R;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentResultListener;
 
-public class AddCategoryDialogFragment extends DialogFragment implements FragmentResultListener {
+public class AddCategoryDialogFragment extends DialogFragment {
 
+    public interface OnSaveClickListener{
+        public void onSaveCategoryClick();
+    }
 
+    private OnSaveClickListener listener;
 
     private EditText editTextName;
     private Button buttonCancel, buttonSave;
 
     public AddCategoryDialogFragment(){}
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnSaveClickListener){
+            listener = (OnSaveClickListener) context;
+        } else {
+            throw new ClassCastException(context.toString());
+        }
+    }
 
     public static AddCategoryDialogFragment newInstance(String title){
         AddCategoryDialogFragment fragment = new AddCategoryDialogFragment();
@@ -68,7 +77,7 @@ public class AddCategoryDialogFragment extends DialogFragment implements Fragmen
 
                 CategoryDAO dao = new CategoryDAO(getContext());
                 dao.insert(category);
-                getParentFragmentManager().setFragmentResult("requestKey", new Bundle());
+                listener.onSaveCategoryClick();
                 onCancelClick();
             }
         });
@@ -79,6 +88,8 @@ public class AddCategoryDialogFragment extends DialogFragment implements Fragmen
                 onCancelClick();
             }
         });
+
+
     }
 
     private void onCancelClick(){
@@ -86,6 +97,8 @@ public class AddCategoryDialogFragment extends DialogFragment implements Fragmen
     }
 
     @Override
-    public void onFragmentResult(String requestKey,  Bundle result) {
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
 }
