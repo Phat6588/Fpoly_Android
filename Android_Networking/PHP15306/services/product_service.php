@@ -43,6 +43,64 @@
         }
 
 
+        public function getAllCategories()
+        {
+            try {
+                $query = "SELECT id, category_name
+                                 FROM " . $this->tblCategories ."  ";
+                $stmt = $this->connection->prepare($query);
+                
+                $stmt->execute();
+                if ($stmt->rowCount() > 0) {
+                    $categories = array();
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $cat = array(
+                            "id" => $id,
+                            "category_name" => $category_name,
+                        );
+                        array_push($categories, $cat);
+                    }
+                    return $categories;
+                }                
+            } catch (Exception $e) {                
+            }
+            return null;
+        }
+
+
+        public function insert($product)
+        {
+            try {
+                $query = "INSERT INTO " . $this->tblproducts ." 
+                        SET product_name = :product_name, price = :price, 
+                        image_url=:image_url, category_id=:category_id
+                                        ";
+                $stmt = $this->connection->prepare($query);
+                
+                $product_name = $product->getProductName();
+                $price = $product->getPrice();
+                $image_url = $product->getImageUrl();
+                $category_id = $product->getCategoryId();
+
+                $stmt->bindParam(":product_name", $product_name);
+                $stmt->bindParam(":price", $price);
+                $stmt->bindParam(":image_url", $image_url);
+                $stmt->bindParam(":category_id", $category_id);
+
+                $this->connection->beginTransaction();
+                if ($stmt->execute()) {
+                    $this->connection->commit();
+                    return true;
+                } else {
+                    $this->connection->rollBack();
+                    return false;
+                }
+            } catch (Exception $e) {                
+            }
+            return false;
+        }
+
 
 
     }

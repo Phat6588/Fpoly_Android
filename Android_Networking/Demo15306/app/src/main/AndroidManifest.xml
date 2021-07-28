@@ -10,10 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.ProductActivity"></activity>
-        <activity android:name=".Activities.PhepToanActivity"></activity>
+        <activity android:name=".Activities.ProductFormActivity"></activity>
+        <activity android:name=".Activities.ProductActivity" />
+        <activity android:name=".Activities.PhepToanActivity" />
         <activity android:name=".Activities.LoaderActivity" />
-        <activity android:name=".Activities.TaskActivity"></activity>
+        <activity android:name=".Activities.TaskActivity" />
         <activity android:name=".Activities.ThreadActivity" />
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
@@ -23,8 +24,8 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

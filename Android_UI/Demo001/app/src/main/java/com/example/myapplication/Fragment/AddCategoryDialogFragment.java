@@ -13,35 +13,25 @@ import com.example.myapplication.DAO.CategoryDAO;
 import com.example.myapplication.Models.Category;
 import com.example.myapplication.R;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentResultListener;
 
-public class AddCategoryDialogFragment extends DialogFragment {
+public class AddCategoryDialogFragment extends DialogFragment
+    implements FragmentResultListener
+{
 
-    public interface OnSaveClickListener{
-        public void onSaveCategoryClick();
-    }
-
-    private OnSaveClickListener listener;
 
     private EditText editTextName;
     private Button buttonCancel, buttonSave;
 
     public AddCategoryDialogFragment(){}
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnSaveClickListener){
-            listener = (OnSaveClickListener) context;
-        } else {
-            throw new ClassCastException(context.toString());
-        }
-    }
-
-    public static AddCategoryDialogFragment newInstance(String title){
+    public static AddCategoryDialogFragment newInstance(Integer id, String name){
         AddCategoryDialogFragment fragment = new AddCategoryDialogFragment();
         Bundle arg = new Bundle();
-        arg.putString("title", title);
+        arg.putInt("id", id);
+        arg.putString("name", name);
         fragment.setArguments(arg);
         return fragment;
     }
@@ -61,8 +51,11 @@ public class AddCategoryDialogFragment extends DialogFragment {
         buttonCancel = (Button) view.findViewById(R.id.buttonCancelCategoryName);
         buttonSave = (Button) view.findViewById(R.id.buttonSaveCategoryName);
 
-        String title = getArguments().getString("title", "Enter Name");
-        getDialog().setTitle(title);
+        String name = getArguments().getString("name", "");
+        Integer id = getArguments().getInt("id", -1);
+        // neu id = -1: them moi
+        // nguoc lai: cap nhat
+        editTextName.setText(name);
 
         editTextName.requestFocus();
         getDialog().getWindow()
@@ -71,13 +64,19 @@ public class AddCategoryDialogFragment extends DialogFragment {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CategoryDAO dao = new CategoryDAO(getContext());
                 String name = editTextName.getText().toString();
                 Category category = new Category();
                 category.setName(name);
+                category.setId(id);
+                if (id == -1){
+                    dao.insert(category);
+                } else {
+                    dao.update(category);
+                }
 
-                CategoryDAO dao = new CategoryDAO(getContext());
-                dao.insert(category);
-                listener.onSaveCategoryClick();
+                getParentFragmentManager().setFragmentResult("key", new Bundle());
+
                 onCancelClick();
             }
         });
@@ -97,8 +96,7 @@ public class AddCategoryDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        this.listener = null;
+    public void onFragmentResult(String requestKey, Bundle result) {
+
     }
 }

@@ -14,6 +14,15 @@ class ProductController {
         public function getAllProducts(){
             return $this->product_service->getAllProducts();
         }
+
+        public function getAllCategories(){
+            return $this->product_service->getAllCategories();
+        }
+
+        public function insert($name, $price, $quantity, $image_url, $category_id){
+            // validation
+            return $this->product_service->insert($name, $price, $quantity, $image_url, $category_id);
+        }
     }
 
 ?>

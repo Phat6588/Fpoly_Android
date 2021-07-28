@@ -1,5 +1,6 @@
 package com.example.myapplication.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,13 +23,26 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FourthFragment extends Fragment
-    implements AddCategoryDialogFragment.OnSaveClickListener {
+public class FourthFragment extends Fragment {
 
     private List<Category> data;
     private RecyclerView recyclerView;
     private CategoryRecyclerAdapter recyclerAdapter;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getParentFragmentManager().setFragmentResultListener("key",
+            FourthFragment.this, new AddCategoryDialogFragment(){
+                @Override
+                public void onFragmentResult(String requestKey, Bundle result) {
+                    super.onFragmentResult(requestKey, result);
+                    Context ctx = FourthFragment.this.getContext();
+                    List<Category> _data = (List<Category>) (new CategoryDAO(getContext())).get();
+                    recyclerAdapter.updateData(_data);
+                }
+            });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -43,7 +57,7 @@ public class FourthFragment extends Fragment
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fabAddCategory) ;
         data = (List<Category>) (new CategoryDAO(getContext())).get();
 
-        recyclerAdapter = new CategoryRecyclerAdapter(data);
+        recyclerAdapter = new CategoryRecyclerAdapter(data, getContext());
         recyclerView = (RecyclerView) view.findViewById(R.id.myRecyclerFourthFragment);
         recyclerView.setAdapter(recyclerAdapter);
 
@@ -53,33 +67,20 @@ public class FourthFragment extends Fragment
 
         recyclerView.setLayoutManager(layoutManager);
 
+        // click 1 item, hien dialog update
+        // recyclerView
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
+
+                // instance for add new
                 AddCategoryDialogFragment dialogFragment = AddCategoryDialogFragment
-                        .newInstance("Add Category Name");
+                        .newInstance(-1, "");
                 dialogFragment.show(fragmentManager, "");
             }
         });
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onSaveCategoryClick() {
-        Log.e(">>>>>>>>", "onSaveCategoryClick");
-        List<Category> _data = (List<Category>) (new CategoryDAO(getContext())).get();
-        recyclerAdapter.updateData(_data);
     }
 }

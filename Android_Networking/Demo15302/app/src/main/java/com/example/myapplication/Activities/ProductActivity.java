@@ -26,15 +26,16 @@ import com.example.myapplication.MyRetrofit.RetrofitBuilder;
 import com.example.myapplication.R;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductActivity extends AppCompatActivity {
 
     private ListView listViewProducts;
     private ImageView imageView2Pik;
-    private Button buttonCapture;
+    private Button buttonAddNew;
 
-    private List<Product> data;
+    private List<Product>  data = new ArrayList<>();
     private ProductAdapter adapter;
 
     private static String BASE_URL = "http://10.0.2.2:8081/";
@@ -46,19 +47,17 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
 
         listViewProducts = (ListView) findViewById(R.id.listViewProducts);
-        imageView2Pik = (ImageView) findViewById(R.id.imageView2Pik);
-        buttonCapture = (Button) findViewById(R.id.buttonCapture);
+        buttonAddNew = (Button) findViewById(R.id.buttonAddNew);
 
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.productGetAll().enqueue(getAllCB);
 
-        buttonCapture.setOnClickListener(new View.OnClickListener() {
+        buttonAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),
-                        1);
+                startActivity(new Intent(getBaseContext(), ProductFormActivity.class));
             }
         });
 
@@ -66,27 +65,11 @@ public class ProductActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK){
-            Bundle bundle = data.getExtras();
-            Bitmap bitmap = (Bitmap) bundle.get("data");
-            
-            // chuyen thanh base64
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            byte[] bytes = baos.toByteArray();
-            String encoded = Base64.encodeToString(bytes, Base64.DEFAULT);
-            encoded = "data:image/png;base64," + encoded;
-
-            MultipartBody.Part part = MultipartBody.Part.createFormData("image", encoded);
-            IRetrofitService service1 = new RetrofitBuilder()
-                    .createService(IRetrofitService.class, BASE_2PIK_URL);
-
-            service1.upload(part).enqueue(uploadCB);
-
-        }
+    protected void onResume() {
+        super.onResume();
+        Log.e("onResume: ", "onResume>>>>");
+        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+        service.productGetAll().enqueue(getAllCB);
     }
 
     Callback<Response2PikModel> uploadCB = new Callback<Response2PikModel>() {
@@ -110,9 +93,16 @@ public class ProductActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
             if (response.isSuccessful()){
-                data = response.body();
-                adapter = new ProductAdapter(data, getBaseContext());
-                listViewProducts.setAdapter(adapter);
+                if (data.size() == 0){
+                    data = response.body();
+                    adapter = new ProductAdapter(data, getBaseContext());
+                    listViewProducts.setAdapter(adapter);
+                } else {
+                    data.clear();
+                    data.addAll(response.body());
+                    listViewProducts.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                }
             } else {
                 Log.e(">>>>>getAllCB onResponse", response.message());
             }

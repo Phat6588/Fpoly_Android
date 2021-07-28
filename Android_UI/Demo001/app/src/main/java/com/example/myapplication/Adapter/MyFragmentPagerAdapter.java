@@ -2,6 +2,7 @@ package com.example.myapplication.Adapter;
 
 import com.example.myapplication.Fragment.FifthFragment;
 import com.example.myapplication.Fragment.FourthFragment;
+import com.example.myapplication.Fragment.SixthFragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -9,8 +10,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class MyFragmentPagerAdapter extends FragmentStateAdapter {
     final int TAB_COUNT = 2;
-    private String[] titles = new String[]{"Khoan thu", "Khoan chi", "Thong ke"};
-
     public MyFragmentPagerAdapter(FragmentActivity fa){
         super(fa);
     }
@@ -23,13 +22,9 @@ public class MyFragmentPagerAdapter extends FragmentStateAdapter {
                 fragmentClass = FifthFragment.class;
                 break;
             case 1:
-                fragmentClass = FourthFragment.class;
-                break;
-            case 2:
-                fragmentClass = FifthFragment.class;
+                fragmentClass = SixthFragment.class;
                 break;
             default:
-                fragmentClass = FifthFragment.class;
                 break;
         }
         try {

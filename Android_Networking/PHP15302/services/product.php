@@ -16,7 +16,7 @@
         public function getAllProducts(){
             try {
                 $q = "SELECT id, name, price, quantity, image_url, category_id
-                     from " . $this->tblProducts . " ";
+                     from " . $this->tblProducts . " order by id desc ";
                 $stmt = $this->connection->prepare($q);                
                 
                 $stmt->execute();
@@ -43,6 +43,65 @@
             return null;
         }
 
+        public function getAllCategories(){
+            try {
+                $q = "SELECT id, name
+                     from " . $this->tblCategories . " ";
+                $stmt = $this->connection->prepare($q);                
+                
+                $stmt->execute();
+
+                if ($stmt->rowCount() > 0) {
+                    $categories = array();
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $cat = array(
+                            "id" =>$id,
+                            "name" =>$name
+                        );
+                        array_push($categories, $cat);
+                    };                    
+                    return $categories;
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+            return null;
+        }
+
+        public function insert($name, $price, $quantity, $image_url, $category_id)
+        {
+            try {
+                $q = "insert into " . $this->tblProducts . "
+                        set name=:name,
+                        price=:price,
+                        quantity=:quantity,
+                        image_url=:image_url,
+                        category_id=:category_id
+                ";
+                $stmt = $this->connection->prepare($q);
+
+                $stmt->bindParam(":name", $name);
+                $stmt->bindParam(":price", $price);
+                $stmt->bindParam(":quantity", $quantity);
+                $stmt->bindParam(":image_url", $image_url);
+                $stmt->bindParam(":category_id", $category_id);
+                
+                $this->connection->beginTransaction();
+
+                if ($stmt->execute()) {
+                    $this->connection->commit();
+                    return true;
+                } else {
+                    $this->connection->rollBack();
+                    return false;
+                }
+            } catch (Exception $e) {
+                //throw $th;
+                echo $e;
+            }
+            return false;
+        }
        
     }
 

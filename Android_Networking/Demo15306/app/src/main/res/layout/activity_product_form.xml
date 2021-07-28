@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ProductFormActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="163dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Product form"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextProductName"
+        android:layout_width="270dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="38dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        android:hint="Product name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/editTextProductPrice"
+        android:layout_width="270dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="31dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text=""
+        android:hint="Price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextProductName" />
+
+    <Spinner
+        android:id="@+id/spinnerCategoryId"
+        android:layout_width="289dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="39dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextProductPrice" />
+
+    <TextView
+        android:id="@+id/textViewTakePhoto"
+        android:layout_width="165dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="44dp"
+        android:text="Take image"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategoryId" />
+
+    <ImageView
+        android:id="@+id/imageViewProductImage"
+        android:layout_width="175dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTakePhoto"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProductImage" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
+        android:text="Cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProductImage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

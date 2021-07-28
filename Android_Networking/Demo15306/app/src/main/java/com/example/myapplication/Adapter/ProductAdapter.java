@@ -25,6 +25,12 @@ public class ProductAdapter extends BaseAdapter {
         this.ctx = ctx;
     }
 
+    public void updateData(List<Product> data){
+        data.clear();
+        data.addAll(data);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return data.size();

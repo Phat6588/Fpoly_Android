@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 //        adapter = new CategoryAdapter(this, data);
 //        listView.setAdapter(adapter);
 
-        recyclerAdapter = new CategoryRecyclerAdapter(data);
+//        recyclerAdapter = new CategoryRecyclerAdapter(data);
         recyclerView = (RecyclerView) findViewById(R.id.myRecycler);
         recyclerView.setAdapter(recyclerAdapter);
 

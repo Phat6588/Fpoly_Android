@@ -15,6 +15,16 @@
             return $this->product_service->getAllProducts();            
         }
 
+        public function getAllCategories()
+        {
+            return $this->product_service->getAllCategories();            
+        }
+
+        public function insert($product)
+        {
+            return $this->product_service->insert($product);            
+        }
+
       
         
     }

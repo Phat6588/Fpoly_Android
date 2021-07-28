@@ -3,7 +3,9 @@ package com.example.myapplication.MyRetrofit;
 import com.example.myapplication.Models.AccessToken;
 import com.example.myapplication.Models.Person;
 import com.example.myapplication.Models.Product;
+import com.example.myapplication.Models.ProductCategory;
 import com.example.myapplication.Models.Response2PikModel;
+import com.example.myapplication.Models.ResponseModel;
 
 import java.util.List;
 
@@ -34,4 +36,10 @@ public interface IRetrofitService {
     @Multipart
     @POST("/")
     Call<Response2PikModel> upload(@Part MultipartBody.Part image);
+
+    @POST("views/product_category_get_all.php")
+    Call<List<ProductCategory>> productCategoryGetAll();
+
+    @POST("views/product_insert.php")
+    Call<ResponseModel> productInsert(@Body Product product);
 }

@@ -9,33 +9,22 @@
 
     <ListView
         android:id="@+id/listViewProducts"
-        android:layout_width="333dp"
-        android:layout_height="338dp"
+        android:layout_width="311dp"
+        android:layout_height="596dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.931" />
 
-    <ImageView
-        android:id="@+id/imageView2Pik"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <Button
-        android:id="@+id/buttonCapture"
+        android:id="@+id/buttonAddNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
-        android:text="Button"
+        android:layout_marginTop="16dp"
+        android:text="Add new"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
