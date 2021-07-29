@@ -15,6 +15,11 @@
             return $this->product_service->getAllProducts();            
         }
 
+        public function getById($id)
+        {
+            return $this->product_service->getById($id);            
+        }
+
         public function getAllCategories()
         {
             return $this->product_service->getAllCategories();            
@@ -25,7 +30,10 @@
             return $this->product_service->insert($product);            
         }
 
-      
+        public function update($product)
+        {
+            return $this->product_service->update($product);            
+        }
         
     }
 ?>

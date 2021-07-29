@@ -33,4 +33,10 @@ public interface IRetrofitService {
 
     @POST("views/product_insert.php")
     Call<ResponseModel> insert(@Body Product product);
+
+    @POST("views/product_get_by_id.php")
+    Call<Product> getProductById(@Body Product product);
+
+    @POST("views/product_update.php")
+    Call<ResponseModel> update(@Body Product product);
 }

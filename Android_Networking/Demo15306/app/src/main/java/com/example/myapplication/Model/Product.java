@@ -1,5 +1,8 @@
 package com.example.myapplication.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class Product {
     private Integer id, category_id;
     private Double price;
@@ -55,4 +58,5 @@ public class Product {
     public void setImage_url(String image_url) {
         this.image_url = image_url;
     }
+
 }

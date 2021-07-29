@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>WebSocket Test</title>
+    <script language="javascript"type="text/javascript">
+        websocket = new WebSocket('ws://127.0.0.1:2046/');
+        websocket.onopen = function(evt) {
+            console.log('connect');
+            websocket.send('{"data":"Hello, world!"}');
+        };
+        websocket.onclose = function(evt) {
+            console.log('onclose');
+            console.log(evt);
+        };
+        websocket.onmessage = function(evt) {
+            console.log('onmessage');
+            if (evt.data) {
+                console.log(JSON.parse(JSON.parse(evt.data)));
+            }
+        };
+        websocket.onerror = function(evt) {
+            console.log('onerror');
+            console.log(evt);
+        };
+        function sendMsg(){
+            var sendData = { 'data': document.getElementById('name').value};
+            websocket.send(JSON.stringify(sendData));
+        }
+    </script>
+</head>
+<body>
+    <h2>WebSocket Test</h2>
+    <input type="text" name="name" id="name" />
+    <a href="javascript:;" onclick="sendMsg()">Click to send</a>
+</body>
+</html>

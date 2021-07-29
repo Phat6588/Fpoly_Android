@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,27 +27,24 @@ import com.example.myapplication.MyRetrofit.RetrofitBuilder;
 import com.example.myapplication.R;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductActivity extends AppCompatActivity {
 
     private ListView listView;
-    private List<Product> data;
+    private List<Product> data = new ArrayList<>();
     private ProductAdapter adapter;
 
-    private ImageView imageViewCapture;
-    private Button buttonCapture, buttonProductForm;
+    private Button buttonProductForm;
 
     private static String BASE_URL = "http://10.0.2.2:8081/";
-    private static String BASE_2PIK_URL = "https://2.pik.vn/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-        imageViewCapture = (ImageView) findViewById(R.id.imageViewCapture) ;
-        buttonCapture = (Button) findViewById(R.id.buttonCapture);
         buttonProductForm = (Button) findViewById(R.id.buttonProductForm);
 
 
@@ -55,30 +53,56 @@ public class ProductActivity extends AppCompatActivity {
 
         service.getAllProduct().enqueue(getAllCB);
 
-        buttonCapture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 1);
-            }
-        });
-
         buttonProductForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(
-                        new Intent(ProductActivity.this, ProductFormActivity.class), 2);
+                startActivity(
+                        new Intent(ProductActivity.this, ProductFormActivity.class));
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Product p = (Product) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getBaseContext(), ProductFormActivity.class);
+                intent.putExtra("id", p.getId());
+                startActivity(intent);
+            }
+        });
+
+        // laravel
+        // socket
+        // firebase
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                return false;
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+        service.getAllProduct().enqueue(getAllCB);
     }
 
     Callback<List<Product>> getAllCB = new Callback<List<Product>>() {
         @Override
         public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
             if (response.isSuccessful()){
-                data = response.body();
-                adapter = new ProductAdapter(data, ProductActivity.this);
-                listView.setAdapter(adapter);
+                if (data.size() == 0){
+                    data = response.body();
+                    adapter = new ProductAdapter(data, ProductActivity.this);
+                    listView.setAdapter(adapter);
+                } else {
+                    data.clear();
+                    data.addAll(response.body());
+                    adapter.notifyDataSetChanged();
+                }
             } else {
                 Log.i("Error: ", response.message());
             }
@@ -90,45 +114,4 @@ public class ProductActivity extends AppCompatActivity {
         }
     };
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK){
-            Bundle bundle = data.getExtras();
-            Bitmap bitmap = (Bitmap) bundle.get("data");
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
-            String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
-            encoded = "data:image/png;base64," + encoded;
-            MultipartBody.Part part = MultipartBody.Part.createFormData("image", encoded);
-            IRetrofitService service = new RetrofitBuilder()
-                    .createService(IRetrofitService.class, BASE_2PIK_URL);
-            service.upload2pik(part).enqueue(uploadCB);
-        } else if (requestCode == 2 && resultCode == RESULT_OK){
-//            IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-//            service.getAllProduct().enqueue(getAllCB);
-        }
-    }
-
-
-
-    Callback<Response2PikModel> uploadCB = new Callback<Response2PikModel>() {
-        @Override
-        public void onResponse(Call<Response2PikModel> call, Response<Response2PikModel> response) {
-            if (response.isSuccessful()){
-                Response2PikModel model = response.body();
-                Log.e("Saved>>>>", model.getSaved());
-            } else {
-                Log.i("Error: ", response.message());
-            }
-        }
-
-        @Override
-        public void onFailure(Call<Response2PikModel> call, Throwable t) {
-
-        }
-    };
 }

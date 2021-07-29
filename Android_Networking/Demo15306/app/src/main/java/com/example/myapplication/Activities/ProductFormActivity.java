@@ -50,6 +50,10 @@ public class ProductFormActivity extends AppCompatActivity {
 
     private String image_url = null;
     private Integer category_id = -1;
+    private Integer productId = -1;
+
+    private Product model = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,8 @@ public class ProductFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_form);
 
         initView();
+
+        productId = getIntent().getIntExtra("id", -1);
 
         IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service.getAllCategories().enqueue(getAllCategoriesCB);
@@ -85,7 +91,13 @@ public class ProductFormActivity extends AppCompatActivity {
                 p.setProduct_name(editTextProductName.getText().toString());
                 p.setPrice(Double.parseDouble(editTextProductPrice.getText().toString()));
                 p.setCategory_id(category_id);
-                service.insert(p).enqueue(insertCB);
+                p.setId(productId);
+                if (productId == -1){
+                    service1.insert(p).enqueue(insert_update_CB);
+                }
+                else {
+                    service1.update(p).enqueue(insert_update_CB);
+                }
             }
         });
 
@@ -102,6 +114,8 @@ public class ProductFormActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     @Override
@@ -123,7 +137,31 @@ public class ProductFormActivity extends AppCompatActivity {
         }
     }
 
-    Callback<ResponseModel> insertCB = new Callback<ResponseModel>() {
+    Callback<Product> getByIdCB = new Callback<Product>() {
+        @Override
+        public void onResponse(Call<Product> call, Response<Product> response) {
+            if (response.isSuccessful()){
+                model = response.body();
+                editTextProductName.setText(model.getProduct_name());
+                editTextProductPrice.setText(model.getPrice()+"");
+                int index = getIndex(data, model.getCategory_id());
+                spinnerCategoryId.setSelection(index);
+                image_url = model.getImage_url();
+                Glide.with(ProductFormActivity.this)
+                        .load(model.getImage_url())
+                        .into(imageViewProductImage);
+            } else {
+                Log.e("getByIdCB onResponse>>>>", response.message());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Product> call, Throwable t) {
+            Log.e("getByIdCB onFailure>>>>", t.getMessage());
+        }
+    };
+
+    Callback<ResponseModel> insert_update_CB = new Callback<ResponseModel>() {
         @Override
         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
             if (response.isSuccessful()){
@@ -174,6 +212,11 @@ public class ProductFormActivity extends AppCompatActivity {
                 adapter = new CategoryAdapter(data, ProductFormActivity.this);
                 spinnerCategoryId.setAdapter(adapter);
                 spinnerCategoryId.setSelection(0);
+                if (productId != -1){
+                    IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                    service.getProductById(new Product(productId, -1, -1.0, null, null))
+                            .enqueue(getByIdCB);
+                }
             } else {
                 Log.e("getAllCategoriesCB onResponse>>>>", response.message());
             }
@@ -185,6 +228,14 @@ public class ProductFormActivity extends AppCompatActivity {
         }
     };
 
+    private Integer getIndex(List<ProductCategory> _data, int category_id){
+        for (int i = 0; i< _data.size(); i++) {
+            if (_data.get(i).getId() == category_id){
+                return i;
+            }
+        }
+        return 0;
+    }
 
     private void initView(){
         editTextProductName = (EditText) findViewById(R.id.editTextProductName);

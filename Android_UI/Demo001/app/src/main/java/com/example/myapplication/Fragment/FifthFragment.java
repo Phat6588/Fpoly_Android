@@ -63,12 +63,12 @@ public class FifthFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                FragmentManager fragmentManager = getParentFragmentManager();
-//
-//                // instance for add new
-//                AddCategoryDialogFragment dialogFragment = AddCategoryDialogFragment
-//                        .newInstance(-1, "");
-//                dialogFragment.show(fragmentManager, "");
+                FragmentManager fragmentManager = getParentFragmentManager();
+
+                // instance for add new
+                AddIncomeExpenseDialogFragment dialogFragment = AddIncomeExpenseDialogFragment
+                        .newInstance(-1, "");
+                dialogFragment.show(fragmentManager, "");
             }
         });
 
