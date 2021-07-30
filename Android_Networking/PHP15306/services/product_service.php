@@ -18,7 +18,7 @@
         {
             try {
                 $query = "SELECT id, product_name, price, image_url, category_id
-                                 FROM " . $this->tblproducts ." order by id desc ";
+                                 FROM " . $this->tblproducts ."  order by id desc ";
                 $stmt = $this->connection->prepare($query);
                 
                 $stmt->execute();
@@ -157,6 +157,27 @@
                     return false;
                 }
             } catch (Exception $e) {                
+            }
+            return false;
+        }
+
+        public function delete($id)
+        {
+            try {
+                $query = "DELETE FROM " . $this->tblproducts ." 
+                        WHERE id=:id ";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bindParam(":id", $id);
+                $this->connection->beginTransaction();
+                if ($stmt->execute()) {
+                    $this->connection->commit();
+                    return true;
+                } else {
+                    $this->connection->rollBack();
+                    return false;
+                }
+            } catch (Exception $e) {   
+                echo $e->getMessage();             
             }
             return false;
         }

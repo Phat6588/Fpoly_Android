@@ -39,4 +39,7 @@ public interface IRetrofitService {
 
     @POST("views/product_update.php")
     Call<ResponseModel> update(@Body Product product);
+
+    @POST("views/product_delete.php")
+    Call<ResponseModel> delete(@Body Product product);
 }

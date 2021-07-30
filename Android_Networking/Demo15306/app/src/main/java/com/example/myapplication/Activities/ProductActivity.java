@@ -18,10 +18,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.myapplication.Adapter.ProductAdapter;
 import com.example.myapplication.Model.Product;
 import com.example.myapplication.Model.Response2PikModel;
+import com.example.myapplication.Model.ResponseModel;
 import com.example.myapplication.MyRetrofit.IRetrofitService;
 import com.example.myapplication.MyRetrofit.RetrofitBuilder;
 import com.example.myapplication.R;
@@ -77,8 +79,10 @@ public class ProductActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                return false;
+                // confirm ????
+                Product p = (Product) adapterView.getItemAtPosition(i);
+                service.delete(p).enqueue(deleteCB);
+                return true;
             }
         });
     }
@@ -86,9 +90,34 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        reloadScreen();
+    }
+
+    private void reloadScreen(){
         IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service.getAllProduct().enqueue(getAllCB);
     }
+
+    Callback<ResponseModel> deleteCB = new Callback<ResponseModel>() {
+        @Override
+        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+            if (response.isSuccessful()){
+                ResponseModel model = response.body();
+                if (model.getStatus()){
+                    reloadScreen();
+                } else {
+                    Toast.makeText(ProductActivity.this, "Delete failed",
+                            Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Log.e("deleteCB onResponse>>>>", response.message());
+            }
+        }
+        @Override
+        public void onFailure(Call<ResponseModel> call, Throwable t) {
+            Log.e("deleteCB onFailure>>>>", t.getMessage());
+        }
+    };
 
     Callback<List<Product>> getAllCB = new Callback<List<Product>>() {
         @Override

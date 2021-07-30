@@ -34,6 +34,11 @@
         {
             return $this->product_service->update($product);            
         }
+
+        public function delete($id)
+        {
+            return $this->product_service->delete($id);            
+        }
         
     }
 ?>
