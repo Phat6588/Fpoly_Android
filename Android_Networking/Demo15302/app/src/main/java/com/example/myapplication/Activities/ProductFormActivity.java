@@ -1,6 +1,5 @@
 package com.example.myapplication.Activities;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -52,6 +51,7 @@ public class ProductFormActivity extends AppCompatActivity {
 
     private String image_url = null;
     private Integer category_id = 0;
+    private Integer product_id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,8 @@ public class ProductFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_form);
 
         initActivity();
+
+        product_id = getIntent().getIntExtra("id", -1);
 
         IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service.productCategoryGetAll().enqueue(getAllProductCategoryCB);
@@ -95,12 +97,18 @@ public class ProductFormActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Product p = new Product();
                 p.setCategory_id(category_id);
+                // validation
                 p.setImage_url(image_url);
                 p.setName(editTextProductName.getText().toString());
                 p.setPrice(Double.parseDouble(editTextProductPrice.getText().toString()));
                 p.setQuantity(Integer.parseInt(editTextProductQuantity.getText().toString()));
+                p.setId(product_id);
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-                service1.productInsert(p).enqueue(insertCB);
+                if (product_id == -1){
+                    service1.productInsert(p).enqueue(insert_update_CB);
+                } else {
+                    service1.productUpdate(p).enqueue(insert_update_CB);
+                }
             }
         });
     }
@@ -128,7 +136,33 @@ public class ProductFormActivity extends AppCompatActivity {
         }
     }
 
-    Callback<ResponseModel> insertCB = new Callback<ResponseModel>() {
+    Callback<Product> getByIdCB = new Callback<Product>() {
+        @Override
+        public void onResponse(Call<Product> call, Response<Product> response) {
+            if (response.isSuccessful()){
+                Product p = response.body();
+                editTextProductName.setText(p.getName());
+                editTextProductPrice.setText(String.valueOf(p.getPrice()));
+                editTextProductQuantity.setText(String.valueOf(p.getQuantity()));
+                int index = getIndex(data, p.getCategory_id());
+                spinnerCategories.setSelection(index);
+                category_id = p.getCategory_id();
+                image_url = p.getImage_url();
+                Glide.with(ProductFormActivity.this)
+                        .load(image_url)
+                        .into(imageViewProduct);
+            } else {
+                Log.e("getByIdCB onResponse: ", response.message());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Product> call, Throwable t) {
+            Log.e("getByIdCB onResponse: ", t.getMessage());
+        }
+    };
+
+    Callback<ResponseModel> insert_update_CB = new Callback<ResponseModel>() {
         @Override
         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
             if (response.isSuccessful()){
@@ -177,6 +211,11 @@ public class ProductFormActivity extends AppCompatActivity {
                 adapter = new CategoryAdapter(data, ProductFormActivity.this);
                 spinnerCategories.setAdapter(adapter);
                 spinnerCategories.setSelection(category_id);
+                if (product_id != -1){
+                    IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                    service.productGetById(new Product(product_id, null, 0.0, 0, null, null))
+                            .enqueue(getByIdCB);
+                }
             } else {
                 Log.e("getAllProductCategoryCB onResponse: ", response.message());
             }
@@ -187,6 +226,15 @@ public class ProductFormActivity extends AppCompatActivity {
             Log.e("getAllProductCategoryCB onResponse: ", t.getMessage());
         }
     };
+
+    private Integer getIndex (List<ProductCategory> list, int categoryId){
+        for (int i = 0; i < list.size(); i++){
+            if (list.get(i).getId() == categoryId){
+                return i;
+            }
+        }
+        return 0;
+    }
 
     private void initActivity(){
         editTextProductName = (EditText) findViewById(R.id.editTextProductName);

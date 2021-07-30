@@ -33,7 +33,7 @@ public class MyDatabase extends SQLiteOpenHelper {
                 "( "+COLUMN_INCOME_EXPENSE_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 ""+COLUMN_INCOME_EXPENSE_NAME+" TEXT, " +
                 ""+COLUMN_INCOME_EXPENSE_DESCRIPTION+" TEXT, " +
-                ""+COLUMN_INCOME_EXPENSE_CREATED_DATE+" TEXT, " +
+                ""+COLUMN_INCOME_EXPENSE_CREATED_DATE+" INTEGER, " +
                 ""+COLUMN_INCOME_EXPENSE_AMOUNT+" REAL, " +
                 ""+COLUMN_INCOME_EXPENSE_CATEGORY_ID+" INTEGER, " +
                 "FOREIGN KEY ("+COLUMN_INCOME_EXPENSE_CATEGORY_ID+") " +

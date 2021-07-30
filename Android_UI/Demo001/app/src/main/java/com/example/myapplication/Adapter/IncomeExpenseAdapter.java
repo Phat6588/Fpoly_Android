@@ -10,6 +10,7 @@ import com.example.myapplication.Models.Category;
 import com.example.myapplication.Models.IncomeExpense;
 import com.example.myapplication.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class IncomeExpenseAdapter extends
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_category_item, parent, false);
+                .inflate(R.layout.layout_income_expense_item, parent, false);
         ViewHolder holder = new ViewHolder(view, new ViewHolder.IMyViewHolderLongClicks(){
             @Override
             public void onItemLongClick(View caller) {
@@ -52,8 +53,9 @@ public class IncomeExpenseAdapter extends
     @Override
     public void onBindViewHolder(IncomeExpenseAdapter.ViewHolder holder, int position) {
         IncomeExpense model = data.get(position);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         holder.getTextViewName().setText(model.getName());
-        holder.getTextViewDate().setText(model.getCreatedDate().toString());
+        holder.getTextViewDate().setText(sdf.format(model.getCreatedDate()));
     }
 
     @Override

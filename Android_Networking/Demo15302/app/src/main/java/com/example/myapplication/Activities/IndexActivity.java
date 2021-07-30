@@ -31,6 +31,12 @@ public class IndexActivity extends AppCompatActivity {
 
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
+        AccessToken token = tokenManager.getToken();
+        if (token.getAccess_token()!=null){
+            startActivity(new Intent(getBaseContext(), ProductActivity.class));
+            finish();
+        }
+
         EditText editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         Button buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
@@ -55,8 +61,8 @@ public class IndexActivity extends AppCompatActivity {
         public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
             if (response.isSuccessful()){
                 AccessToken token = response.body();
-                tokenManager.saveToken(token);
                 if (token.getIs_auth()){
+                    tokenManager.saveToken(token);
                     startActivity(new Intent(getBaseContext(), ProductActivity.class));
                     finish();
                 }

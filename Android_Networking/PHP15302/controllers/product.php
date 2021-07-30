@@ -11,6 +11,10 @@ class ProductController {
             $this->product_service = new ProductService();
         }
 
+        public function getById($id){
+            return $this->product_service->getById($id);
+        }
+
         public function getAllProducts(){
             return $this->product_service->getAllProducts();
         }
@@ -22,6 +26,11 @@ class ProductController {
         public function insert($name, $price, $quantity, $image_url, $category_id){
             // validation
             return $this->product_service->insert($name, $price, $quantity, $image_url, $category_id);
+        }
+
+        public function update($id, $name, $price, $quantity, $image_url, $category_id){
+            // validation
+            return $this->product_service->update($id, $name, $price, $quantity, $image_url, $category_id);
         }
     }
 

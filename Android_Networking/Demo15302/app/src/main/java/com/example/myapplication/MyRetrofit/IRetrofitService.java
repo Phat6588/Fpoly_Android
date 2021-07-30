@@ -33,6 +33,9 @@ public interface IRetrofitService {
     @POST("views/product_get_all.php")
     Call<List<Product>> productGetAll();
 
+    @POST("views/product_get_by_id.php")
+    Call<Product> productGetById(@Body Product product);
+
     @Multipart
     @POST("/")
     Call<Response2PikModel> upload(@Part MultipartBody.Part image);
@@ -42,4 +45,7 @@ public interface IRetrofitService {
 
     @POST("views/product_insert.php")
     Call<ResponseModel> productInsert(@Body Product product);
+
+    @POST("views/product_update.php")
+    Call<ResponseModel> productUpdate(@Body Product product);
 }

@@ -43,7 +43,10 @@ public class IncomeExpenseDAO implements IIncomeExpense{
                     Integer id = cursor.getInt(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_ID));
                     String name = cursor.getString(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_NAME));
                     String description = cursor.getString(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_DESCRIPTION));
-                    Date createdDate = new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_CREATED_DATE)));
+                    Long dateInt = cursor.getLong(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_CREATED_DATE));
+                    Date createdDate = new Date(dateInt);
+//                    Date createdDate = new SimpleDateFormat("dd/MM/yyyy").parse());
+
                     Double amount = cursor.getDouble(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_AMOUNT));
                     Integer categoryId = cursor.getInt(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_CATEGORY_ID));
                     Integer flag = cursor.getInt(cursor.getColumnIndex(COLUMN_FLAG));
@@ -90,7 +93,10 @@ public class IncomeExpenseDAO implements IIncomeExpense{
                     Integer id = cursor.getInt(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_ID));
                     String name = cursor.getString(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_NAME));
                     String description = cursor.getString(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_DESCRIPTION));
-                    Date createdDate = new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_CREATED_DATE)));
+                    Long dateInt = cursor.getLong(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_CREATED_DATE));
+                    Date createdDate = new Date(dateInt);
+
+//                    Date createdDate = new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_CREATED_DATE)));
                     Double amount = cursor.getDouble(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_AMOUNT));
                     Integer categoryId = cursor.getInt(cursor.getColumnIndex(COLUMN_INCOME_EXPENSE_CATEGORY_ID));
                     Integer flag = cursor.getInt(cursor.getColumnIndex(COLUMN_FLAG));
@@ -126,7 +132,7 @@ public class IncomeExpenseDAO implements IIncomeExpense{
             ContentValues values = new ContentValues();
             values.put(COLUMN_INCOME_EXPENSE_NAME, model.getName());
             values.put(COLUMN_INCOME_EXPENSE_DESCRIPTION, model.getDescription());
-            values.put(COLUMN_INCOME_EXPENSE_CREATED_DATE, model.getCreatedDate().toString());
+            values.put(COLUMN_INCOME_EXPENSE_CREATED_DATE, model.getCreatedDate().getTime());
             values.put(COLUMN_INCOME_EXPENSE_AMOUNT, model.getAmount());
             values.put(COLUMN_INCOME_EXPENSE_CATEGORY_ID, model.getCategoryId());
             values.put(COLUMN_FLAG, model.getFlag());
@@ -147,7 +153,7 @@ public class IncomeExpenseDAO implements IIncomeExpense{
             ContentValues values = new ContentValues();
             values.put(COLUMN_INCOME_EXPENSE_NAME, model.getName());
             values.put(COLUMN_INCOME_EXPENSE_DESCRIPTION, model.getDescription());
-            values.put(COLUMN_INCOME_EXPENSE_CREATED_DATE, model.getCreatedDate().toString());
+            values.put(COLUMN_INCOME_EXPENSE_CREATED_DATE, model.getCreatedDate().getTime());
             values.put(COLUMN_INCOME_EXPENSE_AMOUNT, model.getAmount());
             values.put(COLUMN_INCOME_EXPENSE_CATEGORY_ID, model.getCategoryId());
             values.put(COLUMN_FLAG, model.getFlag());

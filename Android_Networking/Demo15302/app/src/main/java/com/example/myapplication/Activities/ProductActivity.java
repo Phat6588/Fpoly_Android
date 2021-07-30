@@ -14,11 +14,13 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.myapplication.Adapter.ProductAdapter;
+import com.example.myapplication.Models.AccessTokenManager;
 import com.example.myapplication.Models.Product;
 import com.example.myapplication.Models.Response2PikModel;
 import com.example.myapplication.MyRetrofit.IRetrofitService;
@@ -33,7 +35,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private ListView listViewProducts;
     private ImageView imageView2Pik;
-    private Button buttonAddNew;
+    private Button buttonAddNew, buttonLogout;
 
     private List<Product>  data = new ArrayList<>();
     private ProductAdapter adapter;
@@ -41,13 +43,18 @@ public class ProductActivity extends AppCompatActivity {
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
 
+    private AccessTokenManager tokenManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
+        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
+
         listViewProducts = (ListView) findViewById(R.id.listViewProducts);
         buttonAddNew = (Button) findViewById(R.id.buttonAddNew);
+        buttonLogout = (Button) findViewById(R.id.buttonLogout);
 
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
@@ -58,6 +65,32 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getBaseContext(), ProductFormActivity.class));
+            }
+        });
+
+        listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Product p = (Product) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getBaseContext(), ProductFormActivity.class);
+                intent.putExtra("id", p.getId());
+                startActivity(intent);
+            }
+        });
+
+        listViewProducts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                return false;
+            }
+        });
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tokenManager.deleteToken();
+                startActivity(new Intent(getBaseContext(), IndexActivity.class));
+                finish();
             }
         });
 

@@ -28,5 +28,4 @@
             android:text="Save"
             android:id="@+id/buttonSaveCategoryName"/>
     </LinearLayout>
-
 </LinearLayout>

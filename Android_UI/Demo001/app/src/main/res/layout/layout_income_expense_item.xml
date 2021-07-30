@@ -26,12 +26,14 @@
         android:id="@+id/textViewDate"
         android:layout_width="174dp"
         android:layout_height="35dp"
+        android:layout_marginStart="13dp"
         android:layout_marginTop="4dp"
         android:gravity="right"
         android:text="Date"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintStart_toEndOf="@+id/textViewName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

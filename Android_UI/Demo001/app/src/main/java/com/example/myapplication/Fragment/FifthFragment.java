@@ -1,5 +1,6 @@
 package com.example.myapplication.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,16 @@ public class FifthFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getParentFragmentManager().setFragmentResultListener("key",
+                FifthFragment.this, new AddIncomeExpenseDialogFragment(){
+                    @Override
+                    public void onFragmentResult(String requestKey, Bundle result) {
+                        super.onFragmentResult(requestKey, result);
+                        List<IncomeExpense> _data = (List<IncomeExpense>)
+                                (new IncomeExpenseDAO(getContext())).get(Constants.INCOME);
+                        adapter.updateData(_data);
+                    }
+                });
     }
 
     @Override
@@ -45,15 +56,14 @@ public class FifthFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fabAddIncome) ;
-        data = (List<IncomeExpense>) (new IncomeExpenseDAO(getContext())).get(Constants.INCOME);
 
+        data = (List<IncomeExpense>) (new IncomeExpenseDAO(getContext())).get(Constants.INCOME);
         adapter = new IncomeExpenseAdapter(data, getContext());
         recyclerView = (RecyclerView) view.findViewById(R.id.myRecyclerFifthFragment);
         recyclerView.setAdapter(adapter);
 
         LinearLayoutManager layoutManager =
-                new LinearLayoutManager(getContext(),
-                        LinearLayoutManager.VERTICAL,false);
+                new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
 
         recyclerView.setLayoutManager(layoutManager);
 
@@ -67,7 +77,7 @@ public class FifthFragment extends Fragment {
 
                 // instance for add new
                 AddIncomeExpenseDialogFragment dialogFragment = AddIncomeExpenseDialogFragment
-                        .newInstance(-1, "");
+                        .newInstance(-1, Constants.INCOME);
                 dialogFragment.show(fragmentManager, "");
             }
         });
